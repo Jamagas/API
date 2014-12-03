@@ -1,0 +1,8 @@
+{
+	"type": "object",
+	"properties": {
+		"rel": {"enum": [ "self", "previous", "next" ]},
+    "href": {"type": "string"}
+	},
+	"required": ["rel", "href"]
+}

@@ -1,0 +1,27 @@
+{
+  "products": {
+    "total": 5,
+    "limit": 3,
+    "offset": 3,
+    "items": [
+      {
+        "id": "0004",
+        "title": "Product 4"
+      },
+      {
+        "id": "0005",
+        "title": "Product 5"
+      }
+    ],
+    "links": [
+      {
+        "rel": "self",
+        "href": "/products?categoryId=21&start=3&limit=3"
+      },
+      {
+        "rel": "previous",
+        "href": "/products?categoryId=21&start=0&limit=3"
+      }
+    ]
+  }
+}

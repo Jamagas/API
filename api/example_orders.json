@@ -1,0 +1,55 @@
+{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0000",
+      "products": [
+        {
+          "id": "0004",
+          "title": "Product 4"
+        },
+        {
+          "id": "0005",
+          "title": "Product 5"
+        }
+      ],
+      "prices": [
+        {
+          "id": "basePrice",
+          "title": "Price for products",
+          "price": 175.0
+        }
+      ]
+    },
+    {
+      "id": "0001",
+      "products": [
+        {
+          "id": "0004",
+          "title": "Product 4"
+        }
+      ]
+      "prices": [
+        {
+          "id": "totalPrice",
+          "title": "Total price",
+          "price": 200.0
+        }
+      ],
+      "payment": {
+        "title": "Pay for order",
+        "description": "You will pay for this order by banklink and you will be redirected to browser to complete payment",
+        "links": [
+          {
+            "rel": "banklink",
+            "href": "http://www.test.com/banklink"
+          }
+        ]
+      }
+    }
+  ]
+}

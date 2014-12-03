@@ -1,0 +1,19 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "description": {"type": "string"},
+    "type": {"enum": ["text", "radio", "checkbox", "select"]},
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    },
+    
+    "text": {"type": "string"},
+    
+    "default": {"type": "boolean"},
+    "selected": {"type": "boolean"}    
+  },
+  "required": ["id", "title"]
+}

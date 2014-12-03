@@ -1,0 +1,15 @@
+{
+  "options": [
+    {
+      "id": "deliveries",
+      "options": [
+        "id": "post",
+        "options": [
+          {
+            "id": "postKaunas"
+          }
+        ]
+      ]
+    }
+  ]
+}

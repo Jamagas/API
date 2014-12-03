@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"properties": {
+    "category": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "productCount": {"type": "integer"},
+        "hasCategories": {"type": "boolean"}
+      },
+      "required": ["id", "title"]
+    }
+	},
+  "required": ["category"]
+}

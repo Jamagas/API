@@ -1,0 +1,10 @@
+{
+  "title": "Link schema",
+	"type": "object",
+	"properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "price": {"type": "number"}
+	},
+	"required": ["id", "title", "price"]
+}

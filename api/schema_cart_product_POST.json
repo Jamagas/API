@@ -1,0 +1,12 @@
+{
+	"type": "object",
+  "properties": {
+    "action": {"enum": ["add", "update", "delete"]},
+    "id": {"type": "string"},
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  },
+  "required": ["action", "id"]
+}

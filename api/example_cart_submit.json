@@ -1,0 +1,29 @@
+{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0000",
+      "prices": [
+        {
+          "id": "basePrice",
+          "title": "Price for products",
+          "price": 175.0
+        }
+      ]
+    },
+    {
+      "id": "0001",
+      "prices": [
+        {
+          "id": "totalPrice",
+          "title": "Total price",
+          "price": 200.0
+        }
+      ]
+    }
+  ]
+}

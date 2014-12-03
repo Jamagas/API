@@ -1,0 +1,64 @@
+{
+  "filters": [
+    {
+      "id": "sorting",
+      "title": "Sorting order",
+      "type": "radio",
+      "options": [
+        {
+          "id": "orderByPriceAsc",
+          "title": "Price A-Z",
+          "default": true
+        },
+        {
+          "id": "orderByPriceDesc",
+          "title": "Price Z-A"
+        },
+        {
+          "id": "orderByTitleAsc",
+          "title": "Title A-Z"
+        },
+        {
+          "id": "orderByTitleDesc",
+          "title": "Title Z-A"
+        }
+      ]
+    },
+    {
+      "id": "filtering",
+      "title": "Filtering",
+      "options": [
+        {
+          "id": "vendor",
+          "title": "Vendors",
+          "type": "checkbox",
+          "options": [
+            {
+              "id": "vendorA",
+              "title": "Vendor A"
+            },
+            {
+              "id": "vendorB",
+              "title": "Vendor B"
+            }
+          ]
+        },
+        {
+          "id": "priceRanges",
+          "title": "Price ranges",
+          "type": "checkbox",
+          "options": [
+            {
+              "id": "priceRange0-100",
+              "title": "Price 0-100"
+            },
+            {
+              "id": "priceRange100-200",
+              "title": "Price 100-200"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

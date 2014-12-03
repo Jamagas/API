@@ -1,0 +1,106 @@
+{
+  "product": {
+    "id": "0000",
+    "title": "Product 1",
+    "price": 1.50,
+    "compareAtPrice": 7.0,
+    "image": "http://www.example.com/example.png",
+    "shareUrl": "http://www.example.com/products/0000",
+    "comparable": false,
+    "inStock": true,
+    "gallery": [
+      "http://www.example.com/products/0000/pictures/1.png",
+      "http://www.example.com/products/0000/pictures/2.png"
+    ],
+    "attributes": [
+      {
+        "key": "Distributor",
+        "value": "Potato garden"
+      },
+      {
+        "key": "Ecologic stars",
+        "value": "5"
+      }
+    ],
+    "options": [
+      {
+        "id": "options",
+        "type": "select",
+        "options": [
+          {
+            "id": "0",
+            "title": "Yellow",
+            "default": false,
+            "price": 1.50,
+            "compareAtPrice": 3.20,
+            "min": 1.0,
+            "max": 120.0,
+            "step": 1.0
+          },
+          {
+            "id": "1",
+            "title": "Brown",
+            "default": true,
+            "type": "radio",
+            "options": [
+              {
+                "id": "11",
+                "title": "Vnt.",
+                "default": true,
+                "price": 5.50,
+                "compareAtPrice": 10.20,
+                "min": 1.0,
+                "max": 120.0,
+                "step": 1.0
+              },
+              {
+                "id": "11",
+                "title": "Mega pack (5 vnt.)",
+                "default": false,
+                "price": 50.50,
+                "compareAtPrice": 100.20,
+                "min": 1.0,
+                "max": 120.0,
+                "step": 1.0
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "relatedProducts": [
+      {
+        "meta": {
+          "title": "Alternatives",
+          "resultClass": "product"
+        },
+        "results": [
+          {
+            "id": "0012",
+            "...": "..."
+          },
+          {
+            "id": "0013",
+            "...": "..."
+          }
+        ]
+      },
+      {
+        "meta": {
+          "title": "Addons",
+          "resultClass": "product"
+        },
+        "results": [
+          {
+            "id": "0012",
+            "...": "..."
+          },
+          {
+            "id": "0013",
+            "...": "..."
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "action": "add",
+  "id": "00001",
+  "options": [
+    {
+      "id": "color",
+      "options": [
+        "id": "red",
+        "options": [
+          {
+            "id": "L"
+          }
+        ]
+      ]
+    }
+  ]
+}

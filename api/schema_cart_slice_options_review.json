@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "properties": {
+    "slice": {"$ref": "schema_cart_slice.json"}
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+  }
+}

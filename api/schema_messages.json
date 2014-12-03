@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "messages": {
+      "type": "object",
+      "properties": {
+        "error": {"type": "array", "items": {"$ref": "schema_message.json"}},
+        "warning": {"type": "array", "items": {"$ref": "schema_message.json"}},
+        "info": {"type": "array", "items": {"$ref": "schema_message.json"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  },
+  "required": ["payments"]
+}

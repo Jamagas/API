@@ -1,0 +1,30 @@
+{
+	"type": "object",
+	"properties": {
+		"id": {"type": "string"},
+    "title": {"type": "string"},
+    "price": {"type": "number"},
+    "compareAtPrice": {"type": "number"},
+    "image": {"type": "string"},
+    "shareUrl": {"type": "string"},
+    "comparable": {"type": "boolean"},
+    "inStock": {"type": "boolean"},
+    "gallery": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "attributes": {
+      "type": "array",
+      "items": {"$ref": "schema_product_attribute.json"}
+    },
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_product_option.json"}
+    },
+    "relatedProducts": {
+      "type": "array",
+      "items": {"$ref": "schema_collection.json"}
+    }
+  },
+	"required": ["id", "title"]
+}

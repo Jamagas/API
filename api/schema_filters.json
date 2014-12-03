@@ -1,0 +1,10 @@
+{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    }
+  },
+  "required": ["filters"]
+}

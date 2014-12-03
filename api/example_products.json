@@ -1,0 +1,104 @@
+{
+  "meta": {
+    "total": 5,
+    "limit": 3,
+    "offset": 3,
+    "orderBy": [
+      {
+        "id": "orderBy",
+        "title": "Ordering",
+        "type": "radio",
+        "options": [
+          {
+            "id": "orderByPriceAsc",
+            "title": "Price A-Z",
+            "selected": true
+          },
+          {
+            "id": "orderByPriceDesc",
+            "title": "Price Z-A"
+          },
+          {
+            "id": "orderByTitleAsc",
+            "title": "Title A-Z"
+          },
+          {
+            "id": "orderByTitleDesc",
+            "title": "Title Z-A"
+          }
+        ]
+      }
+    ],
+    "filters": [
+      {
+        "id": "filtering",
+        "title": "Filtering",
+        "options": [
+          {
+            "id": "vendor",
+            "title": "Vendors",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "vendorA",
+                "title": "Vendor A",
+                "selected": true
+              },
+              {
+                "id": "vendorB",
+                "title": "Vendor B"
+              }
+            ]
+          },
+          {
+            "id": "priceRanges",
+            "title": "Price ranges",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "priceRange0-100",
+                "title": "Price 0-100"
+              },
+              {
+                "id": "priceRange100-200",
+                "title": "Price 100-200"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  "results": [
+    {
+      "id": "0004",
+      "title": "Product 4",
+      "...": "..."
+    },
+    {
+      "id": "0005",
+      "title": "Product 5",
+      "...": "..."
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/products?offset=3&limit=3",
+      "path": "/products",
+      "parameters": {
+        "offset": 3,
+        "limit": 3
+      }
+    },
+    {
+      "rel": "previous",
+      "href": "/products?offset=0&limit=3",
+      "path": "/products",
+      "parameters": {
+        "offset": 0,
+        "limit": 3
+      }
+    }
+  ]
+}

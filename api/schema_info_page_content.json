@@ -1,0 +1,7 @@
+{
+	"type": "object",
+	"properties": {
+    "page": {"$ref": "schema_html.json"}
+	},
+  "required": ["page"]
+}

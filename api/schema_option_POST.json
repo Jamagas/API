@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  },
+  "required": [ "id" ]
+}

@@ -1,0 +1,7 @@
+{
+	"type": "object",
+  "properties": {
+    "order": {"$ref": "schema_cart_orders_order.json"}
+  },
+  "required": ["order"]
+}

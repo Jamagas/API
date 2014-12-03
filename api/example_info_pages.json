@@ -1,0 +1,26 @@
+{
+  "pages": [
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "hasPages": true
+    },
+    {
+      "id": "services",
+      "title": "Company service",
+      "hasPages": true,
+      "pages": [
+        {
+          "id": "delivery",
+          "title": "Delivery packages abroad",
+          "hasPages": false
+        },
+        {
+          "id": "insurance",
+          "title": "Life long insurance",
+          "hasPages": false
+        }
+      ]
+    }
+  ]
+}

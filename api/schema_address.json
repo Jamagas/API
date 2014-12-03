@@ -1,0 +1,34 @@
+{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}

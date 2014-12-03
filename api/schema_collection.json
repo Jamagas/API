@@ -1,0 +1,33 @@
+{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}

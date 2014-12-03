@@ -1,0 +1,10 @@
+{
+	"type": "object",
+	"properties": {
+    "pages": {
+      "type": "array",
+      "items": {"$ref": "schema_info_page.json"}
+    }
+	},
+  "required": ["pages"]
+}

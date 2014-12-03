@@ -1,0 +1,28 @@
+{
+  "payments": [
+    {
+      "id": "payment",
+      "title": "Payments",
+      "type": "radio",
+      "options": [
+        {
+          "id": "bankA",
+          "title": "Bank A",
+          "default": true
+        },
+        {
+          "id": "bankB",
+          "title": "Bank B"
+        },
+        {
+          "id": "bankC",
+          "title": "Bank C"
+        },
+        {
+          "id": "creditCard",
+          "title": "Credit card"
+        }
+      ]
+    }
+  ]
+}

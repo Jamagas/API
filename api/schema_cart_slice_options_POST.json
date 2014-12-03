@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  }
+}

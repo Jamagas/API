@@ -1,0 +1,516 @@
+#%RAML 0.8
+title: MobilityBee API
+version: v1
+baseUri: http://api.example.com/{version}
+
+resourceTypes:
+  - collection:
+      usage: This resourceType should be used for any collection of items. Collection items is SAME as single resource.
+      description: |
+        The collection of <<resourcePathName>>.
+      is: [ limited ]
+      get:
+        description: Get all <<resourcePathName>>.
+        queryParameters:
+          ids:
+            type: string
+            description: Array of <<resourcePathName>> id separated by commas.
+
+traits:
+  - localized:
+      headers:
+        Accept-Language:
+          description: |
+            Acceptable language for response.
+          example: en-US
+  - secured_by_user_session:
+      responses:
+        401:
+          description: |
+            Valid user session is required. Login to get access.
+  - limited:
+      queryParameters:
+        limit:
+          type: integer
+          description: |
+            Limits how much items will be returned. If limit is not provided all <<resourcePathName>> items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]', which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.
+            
+            Limit equal to 0, means unlimited.
+        offset:
+          type: integer
+          description: |
+            You will get collection items from `(offset, MIN(offset+limit, n)]`. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If `offset >= n`, items count in response will be 0, but HTTP status code will be `200`.
+  - paged:
+      queryParameters:
+        page:
+          type: integer
+          description: |
+            Defines specific page for results. If you don't provide `page` you will get first page of the response. Default is 1.
+  - searchable:
+      queryParameters:
+        searchQuery:
+          type: string
+  - orderable:
+      queryParameters:
+        orderBy:
+          enum: [ titleAsc, titleDesc, priceAsc, priceDesc, discountAsc, discountDesc ]
+  - tree:
+      queryParameters:
+        depth:
+          type: integer
+          default: 0
+          description: |
+            Indicates how deep <<resourcePathName>> tree can be. 
+            
+            Example 1. `depth = 0` means that <<resourcePathName>> in sub <<resourcePathName>> array wont return sub <<resourcePathName>>. 
+            
+            Example 2. `depth = 1` means that <<resourcePathName>> in sub <<resourcePathName>> array will return sub <<resourcePathName>> if they exist, but those sub categories, wont return sub sub <<resourcePathName>>.
+
+/_api/rules:
+  /messages :
+    is: [ localized ]
+    description: |
+      **Example of generic messages that could be return by all requests in any of response code.**
+      
+      If request fails with an error error messages should be present.
+      
+      If request have aditional information for user it can be added to info messages.
+      
+      If you want to for example congradulate user after registration you can provide success messages.
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_messages.json
+              example: !include example_messages.json
+    post:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_messages.json
+              example: !include example_messages.json
+  /date:
+    description: |
+      **Date/Time format ISO 8601, UTC**. This date and time format is required everywhere where you want to return date/time data in response json.
+  /authorization:
+    description: |
+      API authorization is made by API Key and API Secret (you can look at it as public and private keys). Every request has HTTP Authorization header with authorization credentials, for example `Authorization: MobilityBee apikey="qwertyuiop", hash="zxcvbnmasdfghjkl"`. 
+      
+      Authorization header is constructed this way: `Authorization: MobilityBee + apikey="api_key_for_app", hash="SHA256(url_string + api_key + api_secret)"`.
+      
+      If authorization fails (401) response must include authenticate header like this `WWW-Authenticate: MobilityBee"`.
+      
+      #TODO: Not yet decided if this should be left as optional, made required or just not used.
+      **OPTIONAL** You can add timestamp in ISO 8601, UTC to authorization header. 
+      Example: `Authorization: MobilityBee apikey="api_key_for_app", hash="SHA256(url_string + api_key + api_secret + timestamp)", timestamp="2014-11-09T17:16:10+00:00"`
+
+/user:
+  is: [ localized, secured_by_user_session ]
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_user.json
+            example: !include example_user.json
+  post: # equal to patch
+    description: Updates user information.
+    body:
+      application/json:
+        schema: !include schema_user.json
+        example: |
+          {
+            "user": {
+              "name": "jonas",
+              "phone": "+37012345678"
+            }
+          }
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_user.json
+            example: |
+              {
+                "user": {
+                  "id": "0000",
+                  "email": "foo@example.com",
+                  "name": "jonas",
+                  "phone": "+37012345678"
+                }
+              }
+  /signin:
+    is: [ localized ]
+    post:
+      body:
+        application/json:
+          schema: !include schema_user.json
+          example: |
+            {
+              "user": {
+                "email": "foo@example.com",
+                "password": "example password"
+              }
+            }
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_user.json
+              example: !include example_user.json
+  /signup:
+    is: [ localized ]
+    post:
+      body:
+        application/json:
+          schema: !include schema_user.json
+          example: |
+            {
+              "user": {
+                "email": "foo@example.com",
+                "password": "example password",
+                "name": "jonas"
+              }
+            }
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include schema_user.json
+              example: !include example_user.json
+  /remind:
+    is: [ localized ]
+    post:
+      body:
+        application/json:
+          schema: !include schema_user.json
+          example: |
+            {
+              "user": {
+                "email": "foo@example.com"
+              }
+            }
+      responses:
+        200:
+  /orders:
+    type: collection
+    is: [ localized, secured_by_user_session ]
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_collection.json
+              example: !include example_orders.json
+    /{orderId}:
+      is: [ localized, secured_by_user_session ]
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schema_order.json
+                example: !include example_order.json
+      /payments:
+        is: [ localized, secured_by_user_session ]
+        get:
+          description: |
+            Payments are options objects, which means that they can be returned in `cart/slices/{sliceId}/options?branchId=payments`, only diference is that in this endpoint payments are under `payments` key and in slice options they ar under `options` key.
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schema_payments_GET.json
+                  example: !include example_payments_GET.json
+        post:
+          description: |
+            Payments are sent to server as options, only diference is that root key is not `options`, but `payments`.
+          body:
+            application/json:
+              schema: !include schema_payments_POST.json
+              example: !include example_payments_POST.json
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schema_payment.json
+                  example: !include example_payment.json
+  /addresses:
+    type: collection
+    is: [ localized, secured_by_user_session ]
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_collection.json
+              example: !include example_addresses.json
+    post:
+      body:
+        application/json:
+          schema: !include schema_address.json
+          example: !include example_address_POST.json
+      responses:
+        201:
+          headers:
+            Content-Location:
+              description: |
+                Location of newly created address.
+              example: |
+                Content-Location: /addresses/00001
+          body:
+            application/json:
+              schema: !include schema_address.json
+              example: !include example_address.json
+    /{addressId}:
+      is: [ localized, secured_by_user_session ]
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schema_address.json
+                example: !include example_address.json
+      post: # equal to patch
+        description: |
+          Prameters same as `user/addresses` `POST` method, difference is that this method only updates address.
+        body:
+          application/json:
+            schema: !include schema_address.json
+            example: !include example_address_POST.json
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schema_address.json
+                example: !include example_address.json
+
+/products:
+  type: collection
+  is: [ localized, orderable ]
+  get:
+    description: |
+      You can get products for specific category, search query and optionaly filtered. All query parameter is inclusive, which means that you can query products for example in specific category with search string and aditionaly filtered.
+    queryParameters:
+      collectionId:
+        type: string
+        description: |
+          Describes some logical set of products grouped into collection described by `collectionId`. For example you want to group this week top selling products, so you group them into collection, which have id.
+      categoryIds:
+        type: string
+        description: |
+          Array of categories id separated by commas.
+      filters[{filterId}][]:
+        type: string
+        description: |
+          Filters are sent as array. For example, `filters[priceRange][]=100-200&filters[vendor][]=vendor1&filters[vendor][]=vendor2`.
+          http://www.nwa4.com/blog/html-and-php-multiple-checkboxes-form-handling-using-arrays
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_collection.json
+            example: !include example_products.json
+  /filters:
+    is: [ localized ]
+    get:
+      description: |
+        You can alter returned filters by providing `categoryIds` parameter, because some filters may be present only for specific category. Filters are also included in `/products` response, see `/products` response schema for details.
+      queryParameters:
+        categoryIds:
+          type: string
+          description: |
+            Array of categories id separated by commas.
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_filters.json
+              example: !include example_filters.json
+  /{productId}: # TODO Related, similar, alternative
+    is: [ localized ]
+    description: Returns product full information.
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_product.json
+              example: !include example_product.json
+    /description:
+      is: [ localized ]
+      description: Returns product description in html.
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schema_product_description.json
+                example: !include example_product_description.json
+
+/promo:
+  is: [ localized, paged ]
+  description: |
+    Default landing page.
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_promo.json
+            example: !include example_promo.json
+  /{promoId}:
+    is: [ localized ]
+    description: |
+      Custom landing page for example accessible via banner.
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_promo.json
+              example: !include example_promo.json
+
+/categories:
+  type: collection
+  is: [ localized ]
+  get:
+    queryParameters:
+      parentCategoryId:
+        description: |
+          If you do not provide `parentCategoryId` you will get root categories.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_collection.json
+            example: !include example_categories.json
+
+/search:
+  is: [ localized, searchable, paged]
+  get:
+    description: Searches any kind of stuff in resources.
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_search.json
+            example: !include example_search.json
+  /suggestions:
+    is: [ localized, searchable]
+    get:
+      description: Autocomplete suggesions
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_search_suggestions.json
+              example: !include example_search_suggestions.json
+
+/info:
+  /pages:
+    is: [ localized, tree ]
+    get:
+      queryParameters:
+        parentPageId:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: !include schema_info_pages.json
+              example: !include example_info_pages.json
+    /{pageId}:
+      is: [ localized ]
+      get:
+        responses:
+          200:
+            body:
+              application/json:
+                schema: !include schema_info_page_content.json
+                example: !include example_info_page_content.json
+
+# https://docs.google.com/document/d/1kEu4oD29Z9XjXHu8NABQJ_D8VybI12bFO6z9DgTky4g/edit?usp=sharing
+/cart:
+  is: [ localized ]
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_cart.json
+            example: !include example_cart.json
+  post:
+    description: |
+      Via `POST` method you can `add`, `update` and `remove` products for cart.
+    body:
+      application/json:
+        schema: !include schema_cart_product_POST.json
+        example: !include example_cart_product_POST.json
+    responses:
+      200:
+        body:
+          application/json:
+            schema: !include schema_cart.json
+            example: !include example_cart.json
+  /submit:
+    is: [ localized ]
+    post:
+      description: |
+        Automaticaly submits all slices. If at least one slice submit fails all slices are rollbacked to not submited state! This means that automatic slice submit initialized by cart submit do NOT support only some submited slices and requires all slices submit to succeed. If submit is successful in response you will get all created orders, similary as `user/orders` via GET.
+      responses:
+        201:
+          body:
+            application/json:
+              schema: !include schema_collection.json
+              example: !include example_cart_submit.json
+  /slices:
+    /{sliceId}:
+      /options:
+        is: [ localized ]
+        description: |
+          Prefered options for individual slice select flow is in steps as folow. 
+          
+          **Step 1.** Request slice options via `GET` without `branchId`, you will get default branch with its `options` and navigation `links`. 
+          
+          **Step 2.** You select options you prefer and create `json` file containing your selected options in `options`. Then you `POST` it to `self` link in `links` array. In response you will get `json` containing next step information. 
+          
+          **Step 3.** If `json` response do not have `options` it means that you reached end of options select and you may go to step 4. Ohterwise you go to step 2. 
+          
+          **Step 4.** Submit cart.
+        get:
+          queryParameters:
+            branchId:
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schema_cart_slice_options_GET.json
+                  example: !include example_cart_slice_options_GET.json
+        post:
+          body:
+            application/json:
+              schema: !include schema_cart_slice_options_POST.json
+              example: !include example_cart_slice_options_POST.json
+          responses:
+            200:
+              body:
+                application/json:
+                  schema: !include schema_cart_slice_options_GET.json
+                  example: !include example_cart_slice_options_GET.json
+      /submit:
+        is: [ localized ]
+        post:
+          description: |
+            **SERVER SIDE ONLY.** 
+            This method should be called only from server side with rollback functionality. API consumer MUST call `/cart/submit` for automatic slices submit. Cart slice submit creates order for submited slice. 
+            
+            **SERVER SIDE IMPLEMENTATION NOTE:**
+            In server side returned order could be not stored in database and only if all slices submit succeeds, `/cart/submit` implementation stores all orders in database. This way rollback implementation is straightforward, because `/cart/submit` initializes orders storing.
+          responses:
+            201:
+              body:
+                application/json:
+                  schema: !include schema_order.json
+                  example: !include example_order.json

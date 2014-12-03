@@ -1,0 +1,9 @@
+{
+  "type": "object",
+  "properties": {
+    "suggestions": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}

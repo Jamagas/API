@@ -1,0 +1,17 @@
+{
+	"type": "object",
+  "properties": {
+    "cart": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "slices": {
+          "type": "array",
+          "items": {"$ref": "schema_cart_slice.json"}
+        }
+      },
+      "required": ["id", "slices"]
+    }
+  },
+  "required": ["cart"]
+}

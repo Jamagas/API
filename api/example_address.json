@@ -1,0 +1,21 @@
+{
+  "address": {
+    "id": "0001",
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}

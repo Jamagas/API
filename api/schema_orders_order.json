@@ -1,0 +1,16 @@
+{
+	"type": "object",
+	"properties": {
+    "id": {"type": "string"},
+    "products": {
+      "type": "array",
+      "items": {"$ref": "schema_product.json"}
+    },
+    "prices": {
+      "type": "array",
+      "items": {"$ref": "schema_cart_slice_price.json"}
+    },
+    "payment":{"$ref": "schema_payment.json"}
+	},
+	"required": ["id", "prices"]
+}

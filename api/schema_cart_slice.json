@@ -1,0 +1,21 @@
+{
+	"type": "object",
+	"properties": {
+    "id": {"type": "string"},
+    "vendorId": {"type": "string"},
+    "vendorTitle": {"type": "string"},
+    "products": {
+      "type": "array",
+      "items": {"$ref": "schema_product.json"}
+    },
+    "prices": {
+      "type": "array",
+      "items": {"$ref": "schema_cart_slice_price.json"}
+    },
+    "selectedOptions": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+	},
+	"required": ["id", "products", "prices"]
+}

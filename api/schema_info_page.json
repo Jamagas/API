@@ -1,0 +1,10 @@
+{
+	"type": "object",
+  "properties": {
+    "id": {"type": "string"},
+    "title": {"type": "string"},
+    "hasPages": {"type": "string"},
+    "pages": {"$ref": "schema_info_pages.json"}
+  },
+  "required": ["id", "title"]
+}

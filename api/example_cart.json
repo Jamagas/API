@@ -1,0 +1,39 @@
+{
+  "cart": {
+    "id": "0000",
+    "slices": [
+      {
+        "id": "0000",
+        "vendorId": "vendor1",
+        "vendorTitle": "UAB Vendor",
+        "products": [
+          {
+            "id": "0005",
+            "title": "Product 5"
+          },
+          {
+            "id": "0006",
+            "title": "Product 6"
+          }
+        ],
+        "prices": [
+          {
+            "id": "basePrice",
+            "title": "Price for products",
+            "price": 175.0
+          },
+          {
+            "id": "deliveryPrice",
+            "title": "Delivery price",
+            "price": 10.0
+          },
+          {
+            "id": "totalPrice",
+            "title": "Total price",
+            "price": 185.0
+          }
+        ]
+      }
+    ]
+  }
+}

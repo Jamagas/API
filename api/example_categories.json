@@ -1,0 +1,31 @@
+{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0001",
+      "title": "Category 1",
+      "productCount": 1,
+      "hasCategories": true
+    },
+    {
+      "id": "0002",
+      "title": "Category 2",
+      "productCount": 1,
+      "hasCategories": true
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/catalog/categories?parentCategoryId=0000"
+    },
+    {
+      "rel": "previous",
+      "href": "/catalog/categories"
+    }
+  ]
+}

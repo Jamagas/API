@@ -1,0 +1,48 @@
+{
+  "options": [
+    {
+      "id": "deliveries",
+      "title": "Delivery types",
+      "description": "Choose delivery type which best fits your needs",
+      "type": "radio",
+      "options": [
+        {
+          "id": "self",
+          "title": "Take yourself",
+          "default": true
+        },
+        {
+          "id": "courier",
+          "title": "Courier to your home"
+        },
+        {
+          "id": "post",
+          "title": "Post office",
+          "type": "select",
+          "selected": true
+          "options": [
+            {
+              "id": "postVilnius",
+              "title": "Post office in Vilnius",
+              "selected": true
+            },
+            {
+              "id": "postKaunas",
+              "title": "Post office in Kaunas"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/cart/slices/{sliceId}/options?branchId=deliveries"
+    },
+    {
+      "rel": "next",
+      "href": "/cart/slices/{sliceId}/options?branchId=payment"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "payments": [
+    {
+      "id": "payment",
+      "options": [
+        {
+          "id": "creditCard",
+        }
+      ]
+    }
+  ]
+}
