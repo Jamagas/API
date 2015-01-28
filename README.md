@@ -19,5 +19,5 @@ See compiled html [documentation](http://api.mobilitybee.com).
 
 ## Copyright and license
 
-Code and documentation copyright 2014 MobilityBee and released under 
+Code and documentation copyright 2015 MobilityBee and released under 
 [the MIT license](https://github.com/MobilityBee/API/blob/master/LICENSE).
