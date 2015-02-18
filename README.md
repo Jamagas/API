@@ -1,7 +1,7 @@
 
 # [MobilityBee API documentation](http://api.mobilitybee.com)
 
-MobilityBee API [documentation](http://api.mobilitybee.com) is e-commerce API documentaion (writen in [RAML](http://raml.org)) solving most common e-commerce problems.
+MobilityBee API [documentation](http://api.mobilitybee.com) is e-commerce API documentation (writen in [RAML](http://raml.org)) solving most common e-commerce problems.
 
 ## Table of contents
 - [Quick start](#quick-start)
@@ -19,5 +19,5 @@ See compiled html [documentation](http://api.mobilitybee.com).
 
 ## Copyright and license
 
-Code and documentation copyright 2015 MobilityBee and released under 
+Code and documentation copyright 2015 MobilityBee and released under
 [the MIT license](https://github.com/MobilityBee/API/blob/master/LICENSE).
