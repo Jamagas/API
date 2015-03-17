@@ -1,32 +1,32 @@
 {
-	"messages": {
-		"error": [
-			{
-				"id": "invalidEmail",
-				"message": "Email is invalid format"
-			},
-      {
-				"id": "invalidPassword",
-				"message": "Password field is empty"
-			}
-		],
-		"warning": [
-			{
-				"id": "shortPasswordWarning",
-				"message": "Your password very short and can be breaked in minutes."
-			}
-		],
-		"info": [
-			{
-				"id": "passwordRemindSend",
-				"message": "Password remind sended to provided email."
-			}
-		],
-		"success": [
-			{
-				"id": "signInSuccess",
-				"message": "Sign in successful."
-			}
-		]
-	}
+    "messages": {
+        "error": [
+            {
+                "id": "invalidEmail",
+                "message": "Email is invalid format"
+            },
+            {
+                "id": "invalidPassword",
+                "message": "Password field is empty"
+            }
+        ],
+        "warning": [
+            {
+                "id": "shortPasswordWarning",
+                "message": "Your password very short and can be breaked in minutes."
+            }
+        ],
+        "info": [
+            {
+                "id": "passwordRemindSend",
+                "message": "Password remind sended to provided email."
+            }
+        ],
+        "success": [
+            {
+                "id": "signInSuccess",
+                "message": "Sign in successful."
+            }
+        ]
+    }
 }
