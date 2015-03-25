@@ -5,6 +5,7 @@ MobilityBee API [documentation](http://api.mobilitybee.com) is e-commerce API do
 
 ## Table of contents
 - [Quick start](#quick-start)
+- [Building](#building)
 - [Copyright and license](#copyright-and-license)
 
 ## Quick start
@@ -16,6 +17,16 @@ You can work with documentation using:
 - Or any other tool listed in [RAML site](http://raml.org/projects.html).
 
 See compiled html [documentation](http://api.mobilitybee.com).
+
+## Building
+
+Dependencies:
+
+- [raml2html](https://www.npmjs.com/package/raml2html)
+
+Build:
+
+	raml2html -i raml/index.raml -o build/index.html
 
 ## Copyright and license
 
