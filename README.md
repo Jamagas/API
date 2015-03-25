@@ -1,7 +1,7 @@
 
-# [MobilityBee API documentation](http://api.mobilitybee.com)
+# [MobilityBee base API documentation](http://api.mobilitybee.com)
 
-MobilityBee API [documentation](http://api.mobilitybee.com) is e-commerce API documentation (writen in [RAML](http://raml.org)) solving most common e-commerce problems.
+MobilityBee base API [documentation](http://api.mobilitybee.com) is an e-commerce API documentation (writen in [RAML](http://raml.org)) solving most common e-commerce problems.
 
 ## Table of contents
 - [Quick start](#quick-start)
