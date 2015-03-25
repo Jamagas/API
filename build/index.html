@@ -1,0 +1,2088 @@
+<!DOCTYPE HTML><html><head><title>MobilityBee base API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.6.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+            
+            
+            // open modal on hashes like #_action_get
+            $(window).bind('hashchange', function(e) {
+                var anchor_id = document.location.hash.substr(1); //strip #
+                var element = $('#' + anchor_id);
+
+                // do we have such element + is it a modal?  --> show it
+                if (element.length && element.hasClass('modal')) {
+                    element.modal('show');
+                }
+            });
+
+            // execute hashchange on first page load
+            $(window).trigger('hashchange');
+            
+            // remove url fragment on modal hide
+            $('.modal').on('hidden.bs.modal', function() {
+                if(history && history.replaceState) { 
+                    history.replaceState({}, '', '#');
+                }
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .badge_patch {
+            background-color: #ccc444;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+            padding-right: 5px;
+            overflow: auto;
+            height: 90%;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>MobilityBee base API documentation <small>version v1</small></h1><p>http://api.example.com/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="__api_rules" class="panel-title">/_api/rules</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_messages"><span class="parent">/_api/rules</span>/messages</a> <span class="methods"><a href="#__api_rules_messages_get"><span class="badge badge_get">get</span></a> <a href="#__api_rules_messages_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel___api_rules_messages" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><strong>Example of generic messages that could be return by all requests in any of response code.</strong></p><p>If request fails with an error error messages should be present.</p><p>If request have aditional information for user it can be added to info messages.</p><p>If you want to for example congradulate user after registration you can provide success messages.</p></div><div class="list-group"><div onclick="window.location.href = '#__api_rules_messages_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#__api_rules_messages_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="__api_rules_messages_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/_api/rules</span>/messages</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#__api_rules_messages_get_request" data-toggle="tab">Request</a></li><li><a href="#__api_rules_messages_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="__api_rules_messages_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="__api_rules_messages_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    "type": "object",
+    "properties": {
+        "messages": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                },
+                "warning": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                },
+                "info": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                }
+            }
+        }
+    }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "messages": {
+        "error": [
+            {
+                "id": "invalidEmail",
+                "message": "Email is invalid format"
+            },
+            {
+                "id": "invalidPassword",
+                "message": "Password field is empty"
+            }
+        ],
+        "warning": [
+            {
+                "id": "shortPasswordWarning",
+                "message": "Your password very short and can be breaked in minutes."
+            }
+        ],
+        "info": [
+            {
+                "id": "passwordRemindSend",
+                "message": "Password remind sended to provided email."
+            }
+        ],
+        "success": [
+            {
+                "id": "signInSuccess",
+                "message": "Sign in successful."
+            }
+        ]
+    }
+}
+</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="__api_rules_messages_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/_api/rules</span>/messages</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#__api_rules_messages_post_request" data-toggle="tab">Request</a></li><li><a href="#__api_rules_messages_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="__api_rules_messages_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="__api_rules_messages_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    "type": "object",
+    "properties": {
+        "messages": {
+            "type": "object",
+            "properties": {
+                "error": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                },
+                "warning": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                },
+                "info": {
+                    "type": "array", 
+                    "items": {"$ref": "schema_message.json"}
+                }
+            }
+        }
+    }
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "messages": {
+        "error": [
+            {
+                "id": "invalidEmail",
+                "message": "Email is invalid format"
+            },
+            {
+                "id": "invalidPassword",
+                "message": "Password field is empty"
+            }
+        ],
+        "warning": [
+            {
+                "id": "shortPasswordWarning",
+                "message": "Your password very short and can be breaked in minutes."
+            }
+        ],
+        "info": [
+            {
+                "id": "passwordRemindSend",
+                "message": "Password remind sended to provided email."
+            }
+        ],
+        "success": [
+            {
+                "id": "signInSuccess",
+                "message": "Sign in successful."
+            }
+        ]
+    }
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_date"><span class="parent">/_api/rules</span>/date</a> <span class="methods"></span></h4></div><div id="panel___api_rules_date" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><strong>Date/Time format ISO 8601, UTC</strong>. This date and time format is required everywhere where you want to return date/time data in response json.</p></div><div class="list-group"></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_authentication"><span class="parent">/_api/rules</span>/authentication</a> <span class="methods"></span></h4></div><div id="panel___api_rules_authentication" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><em>Rules</em></p><p>For a client to be able to consume this API, it must provide authentication details within each request. Authentication details are provided using a HTTP Authorization header <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.8">RFC2616 Section 14.8</a>.</p><p>Authorization header&#39;s field value consists of <code>MobilityBee</code> auth-scheme identifier, API provider issued API Key and SHA256 hash of request&#39;s relative URI with absolute path, API Key and API Secret. In full form, Authorization header field has a form as follows:</p><p><code>Authorization: MobilityBee apikey="APIKEY", hash="HASH"</code></p><p>where <code>HASH</code> is &#39;hex&#39; encoded and calculated like this:</p><p><code>HASH = hex_encode(SHA256(URI + APIKEY + APISECRET))</code></p><p>where <code>URI</code> is a relative request URI with absolute path (e.g. <code>/categories</code>, <code>/products/12345</code>). Be advised that <em>query string</em> is <strong>NOT</strong> included.</p><p>If invalid or none Authentication details are provided within a request, server must respond with <code>401 Unauthorized</code> response. The response <strong>must</strong> also include a <code>WWW-Authenticate</code> header with a field value of &#39;MobilityBee&#39;, i.e. <code>WWW-Authenticate: MobilityBee</code>.</p><p><em>Examples</em></p><p>When API Key is <em>foofoo</em>, API Secret is <em>applesandoranges</em> and to-be-consumed resource URI is <em><a href="http://api.example.com/categories/12345">http://api.example.com/categories/12345</a></em>, Authorization field should look like this:</p><p><code>Authorization: MobilityBee apikey="foofoo", hash="5e82e3836f234a8f8bcacc711fabdac3216663bb6d38b0ea7e2e76482f196149"</code></p><p>Using MAC OS X shell, corresponding hash can be calculated with a following command:</p><p><code>echo -n &#39;/categories/12345foofooapplesandoranges&#39; | shasum -a 256</code></p><p>In Node.JS, calculation is done as follows:</p><p><code>var hash = require(&#39;crypto&#39;).createHash(&#39;sha256&#39;).update(&#39;/categories/12345foofooapplesandoranges&#39;).digest(&#39;hex&#39;);</code></p></div><div class="list-group"></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_user" class="panel-title">/user</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user"><span class="parent"></span>/user</a> <span class="methods"><a href="#_user_get"><span class="badge badge_get">get</span></a> <a href="#_user_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Updates user information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "id": "0000",
+    "email": "foo@example.com"
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/user</h4></div><div class="modal-body"><div class="alert alert-info"><p>Updates user information.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "name": "jonas",
+    "phone": "+37012345678"
+  }
+}
+</code></pre></div><div class="tab-pane" id="_user_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "id": "0000",
+    "email": "foo@example.com",
+    "name": "jonas",
+    "phone": "+37012345678"
+  }
+}
+</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_signin"><span class="parent">/user</span>/signin</a> <span class="methods"><a href="#_user_signin_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_signin" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_signin_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_signin_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user</span>/signin</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_signin_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_signin_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_signin_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "email": "foo@example.com",
+    "password": "example password"
+  }
+}
+</code></pre></div><div class="tab-pane" id="_user_signin_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "id": "0000",
+    "email": "foo@example.com"
+  }
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_signup"><span class="parent">/user</span>/signup</a> <span class="methods"><a href="#_user_signup_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_signup" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_signup_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_signup_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user</span>/signup</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_signup_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_signup_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_signup_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "email": "foo@example.com",
+    "password": "example password",
+    "name": "jonas"
+  }
+}
+</code></pre></div><div class="tab-pane" id="_user_signup_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "id": "0000",
+    "email": "foo@example.com"
+  }
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_remind"><span class="parent">/user</span>/remind</a> <span class="methods"><a href="#_user_remind_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_remind" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_remind_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_remind_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user</span>/remind</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_remind_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_remind_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_remind_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "user": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "email": {"type": "string"},
+        "name": {"type": "string"},
+        "phone": {"type": "string"}
+      },
+      "required": ["id", "email"]
+    }
+	},
+  "required": ["user"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "user": {
+    "email": "foo@example.com"
+  }
+}
+</code></pre></div><div class="tab-pane" id="_user_remind_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_orders"><span class="parent">/user</span>/orders</a> <span class="methods"><a href="#_user_orders_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__user_orders" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>The collection of orders.</p></div><div class="list-group"><div onclick="window.location.href = '#_user_orders_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all orders.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_orders_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user</span>/orders</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all orders.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_orders_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_orders_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_orders_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all orders items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of orders id separated by commas.</p></li></ul></div><div class="tab-pane" id="_user_orders_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0000",
+      "products": [
+        {
+          "id": "0004",
+          "title": "Product 4"
+        },
+        {
+          "id": "0005",
+          "title": "Product 5"
+        }
+      ],
+      "prices": [
+        {
+          "id": "basePrice",
+          "title": "Price for products",
+          "price": 175.0
+        }
+      ]
+    },
+    {
+      "id": "0001",
+      "products": [
+        {
+          "id": "0004",
+          "title": "Product 4"
+        }
+      ]
+      "prices": [
+        {
+          "id": "totalPrice",
+          "title": "Total price",
+          "price": 200.0
+        }
+      ],
+      "payment": {
+        "title": "Pay for order",
+        "description": "You will pay for this order by banklink and you will be redirected to browser to complete payment",
+        "links": [
+          {
+            "rel": "banklink",
+            "href": "http://www.test.com/banklink"
+          }
+        ]
+      }
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_orders__orderId_"><span class="parent">/user/orders</span>/{orderId}</a> <span class="methods"><a href="#_user_orders__orderId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__user_orders__orderId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_orders__orderId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_orders__orderId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user/orders</span>/{orderId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_orders__orderId__get_request" data-toggle="tab">Request</a></li><li><a href="#_user_orders__orderId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_orders__orderId__get_request"><h3>URI Parameters</h3><ul><li><strong>orderId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_orders__orderId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "order": {"$ref": "schema_cart_orders_order.json"}
+  },
+  "required": ["order"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "order": {
+    "id": "0000",
+    "products": [
+      {
+        "id": "0004",
+        "title": "Product 4"
+      },
+      {
+        "id": "0005",
+        "title": "Product 5"
+      }
+    ],
+    "prices": [
+      {
+        "id": "delivery_price",
+        "title": "Delivery price",
+        "price": 10.0
+      },
+      {
+        "id": "total_price",
+        "title": "Total products price",
+        "price": 144.0
+      }
+    ],
+    "payment": {
+      "title": "Pay for order",
+      "description": "You will pay for this order by banklink and you will be redirected to browser to complete payment",
+      "links": [
+        {
+          "rel": "banklink",
+          "href": "http://www.test.com/banklink"
+        }
+      ]
+    }
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_orders__orderId__payments"><span class="parent">/user/orders/{orderId}</span>/payments</a> <span class="methods"><a href="#_user_orders__orderId__payments_get"><span class="badge badge_get">get</span></a> <a href="#_user_orders__orderId__payments_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_orders__orderId__payments" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_orders__orderId__payments_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Payments are options objects, which means that they can be returned in <code>cart/slices/{sliceId}/options?branchId=payments</code>, only diference is that in this endpoint payments are under <code>payments</code> key and in slice options they ar under <code>options</code> key.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_orders__orderId__payments_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Payments are sent to server as options, only diference is that root key is not <code>options</code>, but <code>payments</code>.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_orders__orderId__payments_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user/orders/{orderId}</span>/payments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Payments are options objects, which means that they can be returned in <code>cart/slices/{sliceId}/options?branchId=payments</code>, only diference is that in this endpoint payments are under <code>payments</code> key and in slice options they ar under <code>options</code> key.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_orders__orderId__payments_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_orders__orderId__payments_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_orders__orderId__payments_get_request"><h3>URI Parameters</h3><ul><li><strong>orderId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_orders__orderId__payments_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    }
+  },
+  "required": ["payments"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "payments": [
+    {
+      "id": "payment",
+      "title": "Payments",
+      "type": "radio",
+      "options": [
+        {
+          "id": "bankA",
+          "title": "Bank A",
+          "default": true
+        },
+        {
+          "id": "bankB",
+          "title": "Bank B"
+        },
+        {
+          "id": "bankC",
+          "title": "Bank C"
+        },
+        {
+          "id": "creditCard",
+          "title": "Credit card"
+        }
+      ]
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_orders__orderId__payments_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user/orders/{orderId}</span>/payments</h4></div><div class="modal-body"><div class="alert alert-info"><p>Payments are sent to server as options, only diference is that root key is not <code>options</code>, but <code>payments</code>.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_orders__orderId__payments_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_orders__orderId__payments_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_orders__orderId__payments_post_request"><h3>URI Parameters</h3><ul><li><strong>orderId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "payments": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  },
+  "required": ["payments"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "payments": [
+    {
+      "id": "payment",
+      "options": [
+        {
+          "id": "creditCard",
+        }
+      ]
+    }
+  ]
+}</code></pre></div><div class="tab-pane" id="_user_orders__orderId__payments_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "payment": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "description": {"type": "string"},
+        "links": {
+          "type" : "array",
+          "items": {"$ref": "schema_link.json"}
+        }
+      },
+      "required": ["links"]
+    }
+  },
+  "required": ["payment"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "payment": {
+    "title": "Pay for order",
+    "description": "You will pay for this order by banklink and you will be redirected to browser to complete payment",
+    "links": [
+      {
+        "rel": "banklink",
+        "href": "http://www.test.com/banklink"
+      },
+      {
+        "rel": "order",
+        "href": "/user/orders/123"
+      }
+    ]
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_addresses"><span class="parent">/user</span>/addresses</a> <span class="methods"><a href="#_user_addresses_get"><span class="badge badge_get">get</span></a> <a href="#_user_addresses_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_addresses" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>The collection of addresses.</p></div><div class="list-group"><div onclick="window.location.href = '#_user_addresses_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all addresses.</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_addresses_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_addresses_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user</span>/addresses</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all addresses.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_addresses_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_addresses_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_addresses_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all addresses items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of addresses id separated by commas.</p></li></ul></div><div class="tab-pane" id="_user_addresses_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "meta": {
+    "total": 1,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0000",
+      "name": "Jonas",
+      "surname": "Jonaitis",
+      
+      "email": "jonas@test.com"
+      "phone": "+37062222222",
+      
+      "zipCode": "LT-00000",
+      
+      "address": "Vilniaus g. 999-666",
+      "city": "Vilnius"
+    },
+    {
+      "id": "0001",
+      "name": "Petras",
+      "surname": "Petraitis",
+      
+      "email": "petras@test.com"
+      "phone": "+37062222222",
+      
+      "zipCode": "LT-00001",
+      
+      "address": "Vilniaus g. 666-999",
+      "city": "Vilnius",
+      
+      "company": {
+        "code": "0000",
+        "name": "UAB XXXXXXX",
+        "address": "Vilniaus g. 1111"
+      }
+    }
+  ]
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_addresses_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user</span>/addresses</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_addresses_post_request" data-toggle="tab">Request</a></li><li><a href="#_user_addresses_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_addresses_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address": {
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}</code></pre></div><div class="tab-pane" id="_user_addresses_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Headers</h3><ul><li><strong>Content-Location</strong>: <em>(string )</em><p>Location of newly created address.</p><p><strong>Example</strong>:</p><pre>Content-Location: /addresses/00001
+</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address": {
+    "id": "0001",
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user_addresses__addressId_"><span class="parent">/user/addresses</span>/{addressId}</a> <span class="methods"><a href="#_user_addresses__addressId__get"><span class="badge badge_get">get</span></a> <a href="#_user_addresses__addressId__post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user_addresses__addressId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_addresses__addressId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_addresses__addressId__post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Prameters same as <code>user/addresses</code> <code>POST</code> method, difference is that this method only updates address.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_addresses__addressId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/user/addresses</span>/{addressId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_addresses__addressId__get_request" data-toggle="tab">Request</a></li><li><a href="#_user_addresses__addressId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_addresses__addressId__get_request"><h3>URI Parameters</h3><ul><li><strong>addressId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_addresses__addressId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address": {
+    "id": "0001",
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_addresses__addressId__post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/user/addresses</span>/{addressId}</h4></div><div class="modal-body"><div class="alert alert-info"><p>Prameters same as <code>user/addresses</code> <code>POST</code> method, difference is that this method only updates address.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_user_addresses__addressId__post_request" data-toggle="tab">Request</a></li><li><a href="#_user_addresses__addressId__post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_addresses__addressId__post_request"><h3>URI Parameters</h3><ul><li><strong>addressId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address": {
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}</code></pre></div><div class="tab-pane" id="_user_addresses__addressId__post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "address": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "name": {"type": "string"},
+        "surname": {"type": "string"},
+        
+        "email": {"type": "string"},
+        "phone": {"type": "string"},
+        
+        "zipCode": {"type": "string"},
+        
+        "address": {"type": "string"},
+        "city": {"type": "string"},
+        "country": {"type": "string"},
+        
+        "company": {
+          "type": "object",
+          "properties": {
+            "code": {"type": "string"},
+            "name": {"type": "string"},
+            "address": {"type": "string"}
+          },
+          "required": ["code", "name", "address"]
+        }
+      },
+      "required": ["id", "name", "surname", "email", "phone", "zipCode", "address", "city"]
+    }
+  },
+  "required": ["address"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "address": {
+    "id": "0001",
+    "name": "Petras",
+    "surname": "Petraitis",
+    
+    "email": "petras@test.com"
+    "phone": "+37062222222",
+    
+    "zipCode": "LT-00001",
+    
+    "address": "Vilniaus g. 666-999",
+    "city": "Vilnius",
+    
+    "company": {
+      "code": "0000",
+      "name": "UAB XXXXXXX",
+      "address": "Vilniaus g. 1111"
+    }
+  }
+}</code></pre><h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2><p>Valid user session is required. Login to get access.</p></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_products" class="panel-title">/products</h3></div><div class="panel-body"><div class="top-resource-description"><p>The collection of products.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__products"><span class="parent"></span>/products</a> <span class="methods"><a href="#_products_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__products" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_products_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>You can get products for specific category, search query and optionaly filtered. All query parameter is inclusive, which means that you can query products for example in specific category with search string and aditionaly filtered.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_products_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/products</h4></div><div class="modal-body"><div class="alert alert-info"><p>You can get products for specific category, search query and optionaly filtered. All query parameter is inclusive, which means that you can query products for example in specific category with search string and aditionaly filtered.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_products_get_request" data-toggle="tab">Request</a></li><li><a href="#_products_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_products_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>orderBy</strong>: <em>(one of titleAsc,titleDesc,priceAsc,priceDesc,discountAsc,discountDesc )</em></li><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all products items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of products id separated by commas.</p></li><li><strong>collectionId</strong>: <em>(string )</em><p>Describes some logical set of products grouped into collection described by <code>collectionId</code>. For example you want to group this week top selling products, so you group them into collection, which have id.</p></li><li><strong>categoryIds</strong>: <em>(string )</em><p>Array of categories id separated by commas.</p></li><li><strong>filters[{filterId}][]</strong>: <em>(string )</em><p>Filters are sent as array. For example, <code>filters[priceRange][]=100-200&amp;filters[vendor][]=vendor1&amp;filters[vendor][]=vendor2</code>. <a href="http://www.nwa4.com/blog/html-and-php-multiple-checkboxes-form-handling-using-arrays">http://www.nwa4.com/blog/html-and-php-multiple-checkboxes-form-handling-using-arrays</a></p></li></ul></div><div class="tab-pane" id="_products_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "meta": {
+    "total": 5,
+    "limit": 3,
+    "offset": 3,
+    "orderBy": [
+      {
+        "id": "orderBy",
+        "title": "Ordering",
+        "type": "radio",
+        "options": [
+          {
+            "id": "orderByPriceAsc",
+            "title": "Price A-Z",
+            "selected": true
+          },
+          {
+            "id": "orderByPriceDesc",
+            "title": "Price Z-A"
+          },
+          {
+            "id": "orderByTitleAsc",
+            "title": "Title A-Z"
+          },
+          {
+            "id": "orderByTitleDesc",
+            "title": "Title Z-A"
+          }
+        ]
+      }
+    ],
+    "filters": [
+      {
+        "id": "filtering",
+        "title": "Filtering",
+        "options": [
+          {
+            "id": "vendor",
+            "title": "Vendors",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "vendorA",
+                "title": "Vendor A",
+                "selected": true
+              },
+              {
+                "id": "vendorB",
+                "title": "Vendor B"
+              }
+            ]
+          },
+          {
+            "id": "priceRanges",
+            "title": "Price ranges",
+            "type": "checkbox",
+            "options": [
+              {
+                "id": "priceRange0-100",
+                "title": "Price 0-100"
+              },
+              {
+                "id": "priceRange100-200",
+                "title": "Price 100-200"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },  
+  "results": [
+    {
+      "id": "0004",
+      "title": "Product 4",
+      "...": "..."
+    },
+    {
+      "id": "0005",
+      "title": "Product 5",
+      "...": "..."
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/products?offset=3&amp;limit=3",
+      "path": "/products",
+      "parameters": {
+        "offset": 3,
+        "limit": 3
+      }
+    },
+    {
+      "rel": "previous",
+      "href": "/products?offset=0&amp;limit=3",
+      "path": "/products",
+      "parameters": {
+        "offset": 0,
+        "limit": 3
+      }
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__products_filters"><span class="parent">/products</span>/filters</a> <span class="methods"><a href="#_products_filters_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__products_filters" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_products_filters_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>You can alter returned filters by providing <code>categoryIds</code> parameter, because some filters may be present only for specific category. Filters are also included in <code>/products</code> response, see <code>/products</code> response schema for details.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_products_filters_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/products</span>/filters</h4></div><div class="modal-body"><div class="alert alert-info"><p>You can alter returned filters by providing <code>categoryIds</code> parameter, because some filters may be present only for specific category. Filters are also included in <code>/products</code> response, see <code>/products</code> response schema for details.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_products_filters_get_request" data-toggle="tab">Request</a></li><li><a href="#_products_filters_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_products_filters_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>categoryIds</strong>: <em>(string )</em><p>Array of categories id separated by commas.</p></li></ul></div><div class="tab-pane" id="_products_filters_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "filters": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    }
+  },
+  "required": ["filters"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "filters": [
+    {
+      "id": "sorting",
+      "title": "Sorting order",
+      "type": "radio",
+      "options": [
+        {
+          "id": "orderByPriceAsc",
+          "title": "Price A-Z",
+          "default": true
+        },
+        {
+          "id": "orderByPriceDesc",
+          "title": "Price Z-A"
+        },
+        {
+          "id": "orderByTitleAsc",
+          "title": "Title A-Z"
+        },
+        {
+          "id": "orderByTitleDesc",
+          "title": "Title Z-A"
+        }
+      ]
+    },
+    {
+      "id": "filtering",
+      "title": "Filtering",
+      "options": [
+        {
+          "id": "vendor",
+          "title": "Vendors",
+          "type": "checkbox",
+          "options": [
+            {
+              "id": "vendorA",
+              "title": "Vendor A"
+            },
+            {
+              "id": "vendorB",
+              "title": "Vendor B"
+            }
+          ]
+        },
+        {
+          "id": "priceRanges",
+          "title": "Price ranges",
+          "type": "checkbox",
+          "options": [
+            {
+              "id": "priceRange0-100",
+              "title": "Price 0-100"
+            },
+            {
+              "id": "priceRange100-200",
+              "title": "Price 100-200"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__products__productId_"><span class="parent">/products</span>/{productId}</a> <span class="methods"><a href="#_products__productId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__products__productId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Returns product full information.</p></div><div class="list-group"><div onclick="window.location.href = '#_products__productId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_products__productId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/products</span>/{productId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_products__productId__get_request" data-toggle="tab">Request</a></li><li><a href="#_products__productId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_products__productId__get_request"><h3>URI Parameters</h3><ul><li><strong>productId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_products__productId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+		"id": {"type": "string"},
+    "title": {"type": "string"},
+    "price": {"type": "number"},
+    "compareAtPrice": {"type": "number"},
+    "image": {"type": "string"},
+    "shareUrl": {"type": "string"},
+    "comparable": {"type": "boolean"},
+    "inStock": {"type": "boolean"},
+    "gallery": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "attributes": {
+      "type": "array",
+      "items": {"$ref": "schema_product_attribute.json"}
+    },
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_product_option.json"}
+    },
+    "relatedProducts": {
+      "type": "array",
+      "items": {"$ref": "schema_collection.json"}
+    }
+  },
+	"required": ["id", "title"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "product": {
+    "id": "0000",
+    "title": "Product 1",
+    "price": 1.50,
+    "compareAtPrice": 7.0,
+    "image": "http://www.example.com/example.png",
+    "shareUrl": "http://www.example.com/products/0000",
+    "comparable": false,
+    "inStock": true,
+    "gallery": [
+      "http://www.example.com/products/0000/pictures/1.png",
+      "http://www.example.com/products/0000/pictures/2.png"
+    ],
+    "attributes": [
+      {
+        "key": "Distributor",
+        "value": "Potato garden"
+      },
+      {
+        "key": "Ecologic stars",
+        "value": "5"
+      }
+    ],
+    "options": [
+      {
+        "id": "options",
+        "type": "select",
+        "options": [
+          {
+            "id": "0",
+            "title": "Yellow",
+            "default": false,
+            "price": 1.50,
+            "compareAtPrice": 3.20,
+            "min": 1.0,
+            "max": 120.0,
+            "step": 1.0
+          },
+          {
+            "id": "1",
+            "title": "Brown",
+            "default": true,
+            "type": "radio",
+            "options": [
+              {
+                "id": "11",
+                "title": "Vnt.",
+                "default": true,
+                "price": 5.50,
+                "compareAtPrice": 10.20,
+                "min": 1.0,
+                "max": 120.0,
+                "step": 1.0
+              },
+              {
+                "id": "11",
+                "title": "Mega pack (5 vnt.)",
+                "default": false,
+                "price": 50.50,
+                "compareAtPrice": 100.20,
+                "min": 1.0,
+                "max": 120.0,
+                "step": 1.0
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "relatedProducts": [
+      {
+        "meta": {
+          "title": "Alternatives",
+          "resultClass": "product"
+        },
+        "results": [
+          {
+            "id": "0012",
+            "...": "..."
+          },
+          {
+            "id": "0013",
+            "...": "..."
+          }
+        ]
+      },
+      {
+        "meta": {
+          "title": "Addons",
+          "resultClass": "product"
+        },
+        "results": [
+          {
+            "id": "0012",
+            "...": "..."
+          },
+          {
+            "id": "0013",
+            "...": "..."
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__products__productId__description"><span class="parent">/products/{productId}</span>/description</a> <span class="methods"><a href="#_products__productId__description_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__products__productId__description" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Returns product description in html.</p></div><div class="list-group"><div onclick="window.location.href = '#_products__productId__description_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_products__productId__description_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/products/{productId}</span>/description</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_products__productId__description_get_request" data-toggle="tab">Request</a></li><li><a href="#_products__productId__description_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_products__productId__description_get_request"><h3>URI Parameters</h3><ul><li><strong>productId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_products__productId__description_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "description": {"$ref": "schema_html.json"}
+	},
+  "required": ["description"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "description": {
+    "id": "0000",
+    "title": "Product 1 description",
+    "htmlBody": "&lt;h1&gt;Product 1 description&lt;/h1&gt; &lt;b&gt;Description&lt;/b&gt; this is very good product"
+  }
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_promo" class="panel-title">/promo</h3></div><div class="panel-body"><div class="top-resource-description"><p>Default landing page.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo"><span class="parent"></span>/promo</a> <span class="methods"><a href="#_promo_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_promo_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/promo</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo_get_request" data-toggle="tab">Request</a></li><li><a href="#_promo_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>page</strong>: <em>(integer )</em><p>Defines specific page for results. If you don&#39;t provide <code>page</code> you will get first page of the response. Default is 1.</p></li></ul></div><div class="tab-pane" id="_promo_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "promo": {
+      "type": "array",
+      "items": {"$ref": "schema_collection.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_link.json"}
+    }
+	},
+  "required": [ "promo" ]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "promo": [
+    {
+      "meta": {
+        "title": "Banners",
+        "resultClass": "banner" 
+      },
+      "results": [
+        {
+          "id": "0000",
+          "title": "Special offer",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "promo/0000",
+              "path": "promo";
+              "parameters": {
+                  "promoId": "0000"
+              }
+          }
+        },
+        {
+          "id": "0000",
+          "title": "Special product",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "search?searchQuery=Turbo%20Phone%20X"
+              "path": "search";
+              "parameters": {
+                  "searchQuery": "Turbo Phone X"
+              }
+          }
+        },
+        {
+          "id": "0000",
+          "title": "Special category",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "products?categoryIds=123,5222,456"
+              "path": "products";
+              "parameters": {
+                  "categoryIds": [
+                      "123",
+                      "5222",
+                      "456"
+                  ]
+              }
+          }
+        }
+      ]
+    },
+    {
+      "meta": {
+        "title": "TOP Offers",
+        "resultClass": "product" 
+      },
+      "results": [
+        {
+          "id": "0004",
+          "title": "Product 4",
+          "...": "..."
+        },
+        {
+          "id": "0005",
+          "title": "Product 5",
+          "...": "..."
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/promo",
+      "path": "promo"
+    },
+    {
+      "rel": "next",
+      "href": "/promo?page=2",
+      "path": "promo",
+      "parameters": {
+        "page": "2"
+      }
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo__promoId_"><span class="parent">/promo</span>/{promoId}</a> <span class="methods"><a href="#_promo__promoId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo__promoId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Custom landing page for example accessible via banner.</p></div><div class="list-group"><div onclick="window.location.href = '#_promo__promoId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo__promoId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/promo</span>/{promoId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo__promoId__get_request" data-toggle="tab">Request</a></li><li><a href="#_promo__promoId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo__promoId__get_request"><h3>URI Parameters</h3><ul><li><strong>promoId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_promo__promoId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "promo": {
+      "type": "array",
+      "items": {"$ref": "schema_collection.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_link.json"}
+    }
+	},
+  "required": [ "promo" ]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "promo": [
+    {
+      "meta": {
+        "title": "Banners",
+        "resultClass": "banner" 
+      },
+      "results": [
+        {
+          "id": "0000",
+          "title": "Special offer",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "promo/0000",
+              "path": "promo";
+              "parameters": {
+                  "promoId": "0000"
+              }
+          }
+        },
+        {
+          "id": "0000",
+          "title": "Special product",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "search?searchQuery=Turbo%20Phone%20X"
+              "path": "search";
+              "parameters": {
+                  "searchQuery": "Turbo Phone X"
+              }
+          }
+        },
+        {
+          "id": "0000",
+          "title": "Special category",
+          "imageUrl": "http://www.example.com/specialOffer.png",
+          "content": {
+              "href": "products?categoryIds=123,5222,456"
+              "path": "products";
+              "parameters": {
+                  "categoryIds": [
+                      "123",
+                      "5222",
+                      "456"
+                  ]
+              }
+          }
+        }
+      ]
+    },
+    {
+      "meta": {
+        "title": "TOP Offers",
+        "resultClass": "product" 
+      },
+      "results": [
+        {
+          "id": "0004",
+          "title": "Product 4",
+          "...": "..."
+        },
+        {
+          "id": "0005",
+          "title": "Product 5",
+          "...": "..."
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/promo",
+      "path": "promo"
+    },
+    {
+      "rel": "next",
+      "href": "/promo?page=2",
+      "path": "promo",
+      "parameters": {
+        "page": "2"
+      }
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_categories" class="panel-title">/categories</h3></div><div class="panel-body"><div class="top-resource-description"><p>The collection of categories.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__categories"><span class="parent"></span>/categories</a> <span class="methods"><a href="#_categories_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__categories" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_categories_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all categories.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_categories_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/categories</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all categories.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_categories_get_request" data-toggle="tab">Request</a></li><li><a href="#_categories_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_categories_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all categories items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of categories id separated by commas.</p></li><li><strong>parentCategoryId</strong>: <em>(string )</em><p>If you do not provide <code>parentCategoryId</code> you will get root categories.</p></li></ul></div><div class="tab-pane" id="_categories_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0001",
+      "title": "Category 1",
+      "productCount": 1,
+      "hasCategories": true
+    },
+    {
+      "id": "0002",
+      "title": "Category 2",
+      "productCount": 1,
+      "hasCategories": true
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/catalog/categories?parentCategoryId=0000"
+    },
+    {
+      "rel": "previous",
+      "href": "/catalog/categories"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_search" class="panel-title">/search</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__search"><span class="parent"></span>/search</a> <span class="methods"><a href="#_search_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__search" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_search_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Searches any kind of stuff in resources.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_search_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/search</h4></div><div class="modal-body"><div class="alert alert-info"><p>Searches any kind of stuff in resources.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_search_get_request" data-toggle="tab">Request</a></li><li><a href="#_search_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_search_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>page</strong>: <em>(integer )</em><p>Defines specific page for results. If you don&#39;t provide <code>page</code> you will get first page of the response. Default is 1.</p></li><li><strong>searchQuery</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_search_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "search": {
+      "type": "array",
+      "items": {"$ref": "schema_collection.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_link.json"}
+    }
+	},
+  "required": [ "search" ]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "search": [
+    {
+      "meta": {
+        "title": "Search results for categories",
+        "resultClass": "category" 
+      },
+      "results": [
+        {
+          "id": "0004",
+          "title": "Category 4",
+          "...": "..."
+        },
+        {
+          "id": "0005",
+          "title": "Category 5",
+          "...": "..."
+        }
+      ]
+    },
+    {
+      "meta": {
+        "title": "Search results for products",
+        "resultClass": "product" 
+      },
+      "results": [
+        {
+          "id": "0004",
+          "title": "Product 4",
+          "...": "..."
+        },
+        {
+          "id": "0005",
+          "title": "Product 5",
+          "...": "..."
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/search?searchQuery=product%20x",
+      "path": "search",
+      "parameters": {
+        "searchQuery": "product x"
+      }
+    },
+    {
+      "rel": "next",
+      "href": "/search?searchQuery=product%20x&amp;page=2",
+      "path": "search",
+      "parameters": {
+        "searchQuery": "product x",
+        "page": "2"
+      }
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__search_suggestions"><span class="parent">/search</span>/suggestions</a> <span class="methods"><a href="#_search_suggestions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__search_suggestions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_search_suggestions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Autocomplete suggesions</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_search_suggestions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/search</span>/suggestions</h4></div><div class="modal-body"><div class="alert alert-info"><p>Autocomplete suggesions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_search_suggestions_get_request" data-toggle="tab">Request</a></li><li><a href="#_search_suggestions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_search_suggestions_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>searchQuery</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_search_suggestions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "suggestions": {
+      "type": "array",
+      "items": {"type": "string"}
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "suggestions": [
+    "cake",
+    "apple cake",
+    "pancakes"
+  ]
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_info" class="panel-title">/info</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__info_pages"><span class="parent">/info</span>/pages</a> <span class="methods"><a href="#_info_pages_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__info_pages" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_info_pages_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_info_pages_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/info</span>/pages</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_info_pages_get_request" data-toggle="tab">Request</a></li><li><a href="#_info_pages_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_info_pages_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>depth</strong>: <em>(integer )</em><p>Indicates how deep pages tree can be.</p><p>Example 1. <code>depth = 0</code> means that pages in sub pages array wont return sub pages.</p><p>Example 2. <code>depth = 1</code> means that pages in sub pages array will return sub pages if they exist, but those sub categories, wont return sub sub pages.</p></li><li><strong>parentPageId</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_info_pages_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "pages": {
+      "type": "array",
+      "items": {"$ref": "schema_info_page.json"}
+    }
+	},
+  "required": ["pages"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "pages": [
+    {
+      "id": "faq",
+      "title": "FAQ",
+      "hasPages": true
+    },
+    {
+      "id": "services",
+      "title": "Company service",
+      "hasPages": true,
+      "pages": [
+        {
+          "id": "delivery",
+          "title": "Delivery packages abroad",
+          "hasPages": false
+        },
+        {
+          "id": "insurance",
+          "title": "Life long insurance",
+          "hasPages": false
+        }
+      ]
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__info_pages__pageId_"><span class="parent">/info/pages</span>/{pageId}</a> <span class="methods"><a href="#_info_pages__pageId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__info_pages__pageId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_info_pages__pageId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_info_pages__pageId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/info/pages</span>/{pageId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_info_pages__pageId__get_request" data-toggle="tab">Request</a></li><li><a href="#_info_pages__pageId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_info_pages__pageId__get_request"><h3>URI Parameters</h3><ul><li><strong>pageId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_info_pages__pageId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "page": {"$ref": "schema_html.json"}
+	},
+  "required": ["page"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "page": {
+    "id": "faq",
+    "title": "FAQ",
+    "htmlBody": "&lt;h1&gt;FAQ&lt;/h1&gt; &lt;b&gt;Question 1:&lt;/b&gt; you can always as if you have a question"
+  }
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_cart" class="panel-title">/cart</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart"><span class="parent"></span>/cart</a> <span class="methods"><a href="#_cart_get"><span class="badge badge_get">get</span></a> <a href="#_cart_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__cart" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_cart_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Via <code>POST</code> method you can <code>add</code>, <code>update</code> and <code>remove</code> products for cart.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/cart</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_cart_get_request" data-toggle="tab">Request</a></li><li><a href="#_cart_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_cart_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "cart": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "slices": {
+          "type": "array",
+          "items": {"$ref": "schema_cart_slice.json"}
+        }
+      },
+      "required": ["id", "slices"]
+    }
+  },
+  "required": ["cart"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "cart": {
+    "id": "0000",
+    "slices": [
+      {
+        "id": "0000",
+        "vendorId": "vendor1",
+        "vendorTitle": "UAB Vendor",
+        "products": [
+          {
+            "id": "0005",
+            "title": "Product 5"
+          },
+          {
+            "id": "0006",
+            "title": "Product 6"
+          }
+        ],
+        "prices": [
+          {
+            "id": "basePrice",
+            "title": "Price for products",
+            "price": 175.0
+          },
+          {
+            "id": "deliveryPrice",
+            "title": "Delivery price",
+            "price": 10.0
+          },
+          {
+            "id": "totalPrice",
+            "title": "Total price",
+            "price": 185.0
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/cart</h4></div><div class="modal-body"><div class="alert alert-info"><p>Via <code>POST</code> method you can <code>add</code>, <code>update</code> and <code>remove</code> products for cart.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_post_request" data-toggle="tab">Request</a></li><li><a href="#_cart_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "action": {"enum": ["add", "update", "delete"]},
+    "id": {"type": "string"},
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  },
+  "required": ["action", "id"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "action": "add",
+  "id": "00001",
+  "options": [
+    {
+      "id": "color",
+      "options": [
+        "id": "red",
+        "options": [
+          {
+            "id": "L"
+          }
+        ]
+      ]
+    }
+  ]
+}</code></pre></div><div class="tab-pane" id="_cart_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "cart": {
+      "type": "object",
+      "properties": {
+        "id": {"type": "string"},
+        "slices": {
+          "type": "array",
+          "items": {"$ref": "schema_cart_slice.json"}
+        }
+      },
+      "required": ["id", "slices"]
+    }
+  },
+  "required": ["cart"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "cart": {
+    "id": "0000",
+    "slices": [
+      {
+        "id": "0000",
+        "vendorId": "vendor1",
+        "vendorTitle": "UAB Vendor",
+        "products": [
+          {
+            "id": "0005",
+            "title": "Product 5"
+          },
+          {
+            "id": "0006",
+            "title": "Product 6"
+          }
+        ],
+        "prices": [
+          {
+            "id": "basePrice",
+            "title": "Price for products",
+            "price": 175.0
+          },
+          {
+            "id": "deliveryPrice",
+            "title": "Delivery price",
+            "price": 10.0
+          },
+          {
+            "id": "totalPrice",
+            "title": "Total price",
+            "price": 185.0
+          }
+        ]
+      }
+    ]
+  }
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_submit"><span class="parent">/cart</span>/submit</a> <span class="methods"><a href="#_cart_submit_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__cart_submit" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_submit_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Automaticaly submits all slices. If at least one slice submit fails all slices are rollbacked to not submited state! This means that automatic slice submit initialized by cart submit do NOT support only some submited slices and requires all slices submit to succeed. If submit is successful in response you will get all created orders, similary as <code>user/orders</code> via GET.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_submit_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/cart</span>/submit</h4></div><div class="modal-body"><div class="alert alert-info"><p>Automaticaly submits all slices. If at least one slice submit fails all slices are rollbacked to not submited state! This means that automatic slice submit initialized by cart submit do NOT support only some submited slices and requires all slices submit to succeed. If submit is successful in response you will get all created orders, similary as <code>user/orders</code> via GET.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_submit_post_request" data-toggle="tab">Request</a></li><li><a href="#_cart_submit_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_submit_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_cart_submit_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+	"properties": {
+    "meta": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "resultClass": {"type": "string"},
+        "total": {"type": "integer"},
+        "limit": {"type": "integer"},
+        "offset": {"type": "integer"},
+        "orderBy": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        },
+        "filters": {
+          "type": "array",
+          "items": {"$ref": "schema_option_GET.json"}
+        }
+      },
+      "required": ["total", "limit", "offset"]
+    },
+    "results": {
+      "type": "array",
+      "items": {"type": "object"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+	},
+	"required": ["meta", "results", "links"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "meta": {
+    "total": 2,
+    "limit": 0,
+    "offset": 0
+  },
+  "results": [
+    {
+      "id": "0000",
+      "prices": [
+        {
+          "id": "basePrice",
+          "title": "Price for products",
+          "price": 175.0
+        }
+      ]
+    },
+    {
+      "id": "0001",
+      "prices": [
+        {
+          "id": "totalPrice",
+          "title": "Total price",
+          "price": 200.0
+        }
+      ]
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_slices__sliceId__options"><span class="parent">/cart/slices/{sliceId}</span>/options</a> <span class="methods"><a href="#_cart_slices__sliceId__options_get"><span class="badge badge_get">get</span></a> <a href="#_cart_slices__sliceId__options_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__cart_slices__sliceId__options" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Prefered options for individual slice select flow is in steps as folow.</p><p><strong>Step 1.</strong> Request slice options via <code>GET</code> without <code>branchId</code>, you will get default branch with its <code>options</code> and navigation <code>links</code>.</p><p><strong>Step 2.</strong> You select options you prefer and create <code>json</code> file containing your selected options in <code>options</code>. Then you <code>POST</code> it to <code>self</code> link in <code>links</code> array. In response you will get <code>json</code> containing next step information.</p><p><strong>Step 3.</strong> If <code>json</code> response do not have <code>options</code> it means that you reached end of options select and you may go to step 4. Ohterwise you go to step 2.</p><p><strong>Step 4.</strong> Submit cart.</p></div><div class="list-group"><div onclick="window.location.href = '#_cart_slices__sliceId__options_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_cart_slices__sliceId__options_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_slices__sliceId__options_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/cart/slices/{sliceId}</span>/options</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_cart_slices__sliceId__options_get_request" data-toggle="tab">Request</a></li><li><a href="#_cart_slices__sliceId__options_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_slices__sliceId__options_get_request"><h3>URI Parameters</h3><ul><li><strong>sliceId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>branchId</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_cart_slices__sliceId__options_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "options": [
+    {
+      "id": "deliveries",
+      "title": "Delivery types",
+      "description": "Choose delivery type which best fits your needs",
+      "type": "radio",
+      "options": [
+        {
+          "id": "self",
+          "title": "Take yourself",
+          "default": true
+        },
+        {
+          "id": "courier",
+          "title": "Courier to your home"
+        },
+        {
+          "id": "post",
+          "title": "Post office",
+          "type": "select",
+          "selected": true
+          "options": [
+            {
+              "id": "postVilnius",
+              "title": "Post office in Vilnius",
+              "selected": true
+            },
+            {
+              "id": "postKaunas",
+              "title": "Post office in Kaunas"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/cart/slices/{sliceId}/options?branchId=deliveries"
+    },
+    {
+      "rel": "next",
+      "href": "/cart/slices/{sliceId}/options?branchId=payment"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_slices__sliceId__options_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/cart/slices/{sliceId}</span>/options</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_cart_slices__sliceId__options_post_request" data-toggle="tab">Request</a></li><li><a href="#_cart_slices__sliceId__options_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_slices__sliceId__options_post_request"><h3>URI Parameters</h3><ul><li><strong>sliceId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_POST.json"}
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "options": [
+    {
+      "id": "deliveries",
+      "options": [
+        "id": "post",
+        "options": [
+          {
+            "id": "postKaunas"
+          }
+        ]
+      ]
+    }
+  ]
+}</code></pre></div><div class="tab-pane" id="_cart_slices__sliceId__options_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "type": "object",
+  "properties": {
+    "options": {
+      "type": "array",
+      "items": {"$ref": "schema_option_GET.json"}
+    },
+    "links": {
+      "type" : "array",
+      "items": {"$ref": "schema_collection_link.json"}
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "options": [
+    {
+      "id": "deliveries",
+      "title": "Delivery types",
+      "description": "Choose delivery type which best fits your needs",
+      "type": "radio",
+      "options": [
+        {
+          "id": "self",
+          "title": "Take yourself",
+          "default": true
+        },
+        {
+          "id": "courier",
+          "title": "Courier to your home"
+        },
+        {
+          "id": "post",
+          "title": "Post office",
+          "type": "select",
+          "selected": true
+          "options": [
+            {
+              "id": "postVilnius",
+              "title": "Post office in Vilnius",
+              "selected": true
+            },
+            {
+              "id": "postKaunas",
+              "title": "Post office in Kaunas"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "links": [
+    {
+      "rel": "self",
+      "href": "/cart/slices/{sliceId}/options?branchId=deliveries"
+    },
+    {
+      "rel": "next",
+      "href": "/cart/slices/{sliceId}/options?branchId=payment"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__cart_slices__sliceId__submit"><span class="parent">/cart/slices/{sliceId}</span>/submit</a> <span class="methods"><a href="#_cart_slices__sliceId__submit_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__cart_slices__sliceId__submit" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_cart_slices__sliceId__submit_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p><strong>SERVER SIDE ONLY.</strong> This method should be called only from server side with rollback functionality. API consumer MUST call <code>/cart/submit</code> for automatic slices submit. Cart slice submit creates order for submited slice.</p><p><strong>SERVER SIDE IMPLEMENTATION NOTE:</strong> In server side returned order could be not stored in database and only if all slices submit succeeds, <code>/cart/submit</code> implementation stores all orders in database. This way rollback implementation is straightforward, because <code>/cart/submit</code> initializes orders storing.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_cart_slices__sliceId__submit_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/cart/slices/{sliceId}</span>/submit</h4></div><div class="modal-body"><div class="alert alert-info"><p><strong>SERVER SIDE ONLY.</strong> This method should be called only from server side with rollback functionality. API consumer MUST call <code>/cart/submit</code> for automatic slices submit. Cart slice submit creates order for submited slice.</p><p><strong>SERVER SIDE IMPLEMENTATION NOTE:</strong> In server side returned order could be not stored in database and only if all slices submit succeeds, <code>/cart/submit</code> implementation stores all orders in database. This way rollback implementation is straightforward, because <code>/cart/submit</code> initializes orders storing.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_cart_slices__sliceId__submit_post_request" data-toggle="tab">Request</a></li><li><a href="#_cart_slices__sliceId__submit_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_cart_slices__sliceId__submit_post_request"><h3>URI Parameters</h3><ul><li><strong>sliceId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_cart_slices__sliceId__submit_post_response"><h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+	"type": "object",
+  "properties": {
+    "order": {"$ref": "schema_cart_orders_order.json"}
+  },
+  "required": ["order"]
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "order": {
+    "id": "0000",
+    "products": [
+      {
+        "id": "0004",
+        "title": "Product 4"
+      },
+      {
+        "id": "0005",
+        "title": "Product 5"
+      }
+    ],
+    "prices": [
+      {
+        "id": "delivery_price",
+        "title": "Delivery price",
+        "price": 10.0
+      },
+      {
+        "id": "total_price",
+        "title": "Total products price",
+        "price": 144.0
+      }
+    ],
+    "payment": {
+      "title": "Pay for order",
+      "description": "You will pay for this order by banklink and you will be redirected to browser to complete payment",
+      "links": [
+        {
+          "rel": "banklink",
+          "href": "http://www.test.com/banklink"
+        }
+      ]
+    }
+  }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#__api_rules">/_api/rules</a></li><li><a href="#_user">/user</a></li><li><a href="#_products">/products</a></li><li><a href="#_promo">/promo</a></li><li><a href="#_categories">/categories</a></li><li><a href="#_search">/search</a></li><li><a href="#_info">/info</a></li><li><a href="#_cart">/cart</a></li></ul></div></div></div></div></body></html>
