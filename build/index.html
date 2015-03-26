@@ -141,115 +141,7 @@
         .list-group-item:hover {
             background-color: #f5f5f5;
         }
-    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>MobilityBee base API documentation <small>version v1</small></h1><p>http://api.example.com/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="__api_rules" class="panel-title">/_api/rules</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_messages"><span class="parent">/_api/rules</span>/messages</a> <span class="methods"><a href="#__api_rules_messages_get"><span class="badge badge_get">get</span></a> <a href="#__api_rules_messages_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel___api_rules_messages" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><strong>Example of generic messages that could be return by all requests in any of response code.</strong></p><p>If request fails with an error error messages should be present.</p><p>If request have aditional information for user it can be added to info messages.</p><p>If you want to for example congradulate user after registration you can provide success messages.</p></div><div class="list-group"><div onclick="window.location.href = '#__api_rules_messages_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#__api_rules_messages_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="__api_rules_messages_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/_api/rules</span>/messages</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#__api_rules_messages_get_request" data-toggle="tab">Request</a></li><li><a href="#__api_rules_messages_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="__api_rules_messages_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="__api_rules_messages_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-    "type": "object",
-    "properties": {
-        "messages": {
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                },
-                "warning": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                },
-                "info": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                }
-            }
-        }
-    }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-    "messages": {
-        "error": [
-            {
-                "id": "invalidEmail",
-                "message": "Email is invalid format"
-            },
-            {
-                "id": "invalidPassword",
-                "message": "Password field is empty"
-            }
-        ],
-        "warning": [
-            {
-                "id": "shortPasswordWarning",
-                "message": "Your password very short and can be breaked in minutes."
-            }
-        ],
-        "info": [
-            {
-                "id": "passwordRemindSend",
-                "message": "Password remind sended to provided email."
-            }
-        ],
-        "success": [
-            {
-                "id": "signInSuccess",
-                "message": "Sign in successful."
-            }
-        ]
-    }
-}
-</code></pre></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="__api_rules_messages_post"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent">/_api/rules</span>/messages</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#__api_rules_messages_post_request" data-toggle="tab">Request</a></li><li><a href="#__api_rules_messages_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="__api_rules_messages_post_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="__api_rules_messages_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-    "type": "object",
-    "properties": {
-        "messages": {
-            "type": "object",
-            "properties": {
-                "error": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                },
-                "warning": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                },
-                "info": {
-                    "type": "array", 
-                    "items": {"$ref": "schema_message.json"}
-                }
-            }
-        }
-    }
-}
-</code></pre><p><strong>Example</strong>:</p><pre><code>{
-    "messages": {
-        "error": [
-            {
-                "id": "invalidEmail",
-                "message": "Email is invalid format"
-            },
-            {
-                "id": "invalidPassword",
-                "message": "Password field is empty"
-            }
-        ],
-        "warning": [
-            {
-                "id": "shortPasswordWarning",
-                "message": "Your password very short and can be breaked in minutes."
-            }
-        ],
-        "info": [
-            {
-                "id": "passwordRemindSend",
-                "message": "Password remind sended to provided email."
-            }
-        ],
-        "success": [
-            {
-                "id": "signInSuccess",
-                "message": "Sign in successful."
-            }
-        ]
-    }
-}
-</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_date"><span class="parent">/_api/rules</span>/date</a> <span class="methods"></span></h4></div><div id="panel___api_rules_date" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><strong>Date/Time format ISO 8601, UTC</strong>. This date and time format is required everywhere where you want to return date/time data in response json.</p></div><div class="list-group"></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel___api_rules_authentication"><span class="parent">/_api/rules</span>/authentication</a> <span class="methods"></span></h4></div><div id="panel___api_rules_authentication" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p><em>Rules</em></p><p>For a client to be able to consume this API, it must provide authentication details within each request. Authentication details are provided using a HTTP Authorization header <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.8">RFC2616 Section 14.8</a>.</p><p>Authorization header&#39;s field value consists of <code>MobilityBee</code> auth-scheme identifier, API provider issued API Key and SHA256 hash of request&#39;s relative URI with absolute path, API Key and API Secret. In full form, Authorization header field has a form as follows:</p><p><code>Authorization: MobilityBee apikey="APIKEY", hash="HASH"</code></p><p>where <code>HASH</code> is &#39;hex&#39; encoded and calculated like this:</p><p><code>HASH = hex_encode(SHA256(URI + APIKEY + APISECRET))</code></p><p>where <code>URI</code> is a relative request URI with absolute path (e.g. <code>/categories</code>, <code>/products/12345</code>). Be advised that <em>query string</em> is <strong>NOT</strong> included.</p><p>If invalid or none Authentication details are provided within a request, server must respond with <code>401 Unauthorized</code> response. The response <strong>must</strong> also include a <code>WWW-Authenticate</code> header with a field value of &#39;MobilityBee&#39;, i.e. <code>WWW-Authenticate: MobilityBee</code>.</p><p><em>Examples</em></p><p>When API Key is <em>foofoo</em>, API Secret is <em>applesandoranges</em> and to-be-consumed resource URI is <em><a href="http://api.example.com/categories/12345">http://api.example.com/categories/12345</a></em>, Authorization field should look like this:</p><p><code>Authorization: MobilityBee apikey="foofoo", hash="5e82e3836f234a8f8bcacc711fabdac3216663bb6d38b0ea7e2e76482f196149"</code></p><p>Using MAC OS X shell, corresponding hash can be calculated with a following command:</p><p><code>echo -n &#39;/categories/12345foofooapplesandoranges&#39; | shasum -a 256</code></p><p>In Node.JS, calculation is done as follows:</p><p><code>var hash = require(&#39;crypto&#39;).createHash(&#39;sha256&#39;).update(&#39;/categories/12345foofooapplesandoranges&#39;).digest(&#39;hex&#39;);</code></p></div><div class="list-group"></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_user" class="panel-title">/user</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user"><span class="parent"></span>/user</a> <span class="methods"><a href="#_user_get"><span class="badge badge_get">get</span></a> <a href="#_user_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Updates user information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>MobilityBee base API documentation <small>version v1</small></h1><p>http://api.example.com/v1</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_user" class="panel-title">/user</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__user"><span class="parent"></span>/user</a> <span class="methods"><a href="#_user_get"><span class="badge badge_get">get</span></a> <a href="#_user_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel__user" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_user_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#_user_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"><p>Updates user information.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_user_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/user</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_user_get_request" data-toggle="tab">Request</a></li><li><a href="#_user_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_user_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_user_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
 	"type": "object",
 	"properties": {
     "user": {
@@ -1321,201 +1213,209 @@
     "title": "Product 1 description",
     "htmlBody": "&lt;h1&gt;Product 1 description&lt;/h1&gt; &lt;b&gt;Description&lt;/b&gt; this is very good product"
   }
-}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_promo" class="panel-title">/promo</h3></div><div class="panel-body"><div class="top-resource-description"><p>Default landing page.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo"><span class="parent"></span>/promo</a> <span class="methods"><a href="#_promo_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_promo_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/promo</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo_get_request" data-toggle="tab">Request</a></li><li><a href="#_promo_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>page</strong>: <em>(integer )</em><p>Defines specific page for results. If you don&#39;t provide <code>page</code> you will get first page of the response. Default is 1.</p></li></ul></div><div class="tab-pane" id="_promo_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-	"type": "object",
-	"properties": {
-    "promo": {
-      "type": "array",
-      "items": {"$ref": "schema_collection.json"}
-    },
-    "links": {
-      "type" : "array",
-      "items": {"$ref": "schema_link.json"}
-    }
-	},
-  "required": [ "promo" ]
-}</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "promo": [
-    {
-      "meta": {
-        "title": "Banners",
-        "resultClass": "banner" 
-      },
-      "results": [
-        {
-          "id": "0000",
-          "title": "Special offer",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "promo/0000",
-              "path": "promo";
-              "parameters": {
-                  "promoId": "0000"
-              }
-          }
+}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_promo" class="panel-title">/promo</h3></div><div class="panel-body"><div class="top-resource-description"><p>Default landing page.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo"><span class="parent"></span>/promo</a> <span class="methods"><a href="#_promo_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_promo_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/promo</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo_get_request" data-toggle="tab">Request</a></li><li><a href="#_promo_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_promo_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    "type": "object",
+    "properties": {
+        "promo": {
+            "type": "array",
+            "items": {"$ref": "schema_collection.json"}
         },
-        {
-          "id": "0000",
-          "title": "Special product",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "search?searchQuery=Turbo%20Phone%20X"
-              "path": "search";
-              "parameters": {
-                  "searchQuery": "Turbo Phone X"
-              }
-          }
-        },
-        {
-          "id": "0000",
-          "title": "Special category",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "products?categoryIds=123,5222,456"
-              "path": "products";
-              "parameters": {
-                  "categoryIds": [
-                      "123",
-                      "5222",
-                      "456"
-                  ]
-              }
-          }
+        "links": {
+            "type" : "array",
+            "items": {"$ref": "schema_link.json"}
         }
-      ]
     },
-    {
-      "meta": {
-        "title": "TOP Offers",
-        "resultClass": "product" 
-      },
-      "results": [
+    "required": [ "promo" ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "promo": [
         {
-          "id": "0004",
-          "title": "Product 4",
-          "...": "..."
+            "meta": {
+                "title": "Banners",
+                "resultClass": "banner" 
+            },
+            "results": [
+                {
+                    "id": "0000",
+                    "title": "Special offer",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/promo/0000",
+                        "path": "/promo/0000"
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special product",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/search?searchQuery=Turbo%20Phone%20X",
+                        "path": "/search",
+                        "parameters": {
+                            "searchQuery": "Turbo Phone X"
+                        }
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special category",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/products?categoryIds=123,5222,456",
+                        "path": "/products",
+                        "parameters": {
+                            "categoryIds": [
+                                "123",
+                                "5222",
+                                "456"
+                            ]
+                        }
+                    }
+                }
+            ]
         },
         {
-          "id": "0005",
-          "title": "Product 5",
-          "...": "..."
+            "meta": {
+                "title": "TOP Offers",
+                "resultClass": "product" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Product 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Product 5",
+                    "...": "..."
+                }
+            ],
+            "links": [
+                {
+                    "rel": "more",
+                    "href": "/products?categoryIds=117,932",
+                    "path": "/products",
+                    "parameters": {
+                        "categoryIds": [
+                            "117",
+                            "932"
+                        ]
+                    }
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "/promo",
-      "path": "promo"
-    },
-    {
-      "rel": "next",
-      "href": "/promo?page=2",
-      "path": "promo",
-      "parameters": {
-        "page": "2"
-      }
-    }
-  ]
-}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo__promoId_"><span class="parent">/promo</span>/{promoId}</a> <span class="methods"><a href="#_promo__promoId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo__promoId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Custom landing page for example accessible via banner.</p></div><div class="list-group"><div onclick="window.location.href = '#_promo__promoId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo__promoId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/promo</span>/{promoId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo__promoId__get_request" data-toggle="tab">Request</a></li><li><a href="#_promo__promoId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo__promoId__get_request"><h3>URI Parameters</h3><ul><li><strong>promoId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_promo__promoId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-	"type": "object",
-	"properties": {
-    "promo": {
-      "type": "array",
-      "items": {"$ref": "schema_collection.json"}
-    },
-    "links": {
-      "type" : "array",
-      "items": {"$ref": "schema_link.json"}
-    }
-	},
-  "required": [ "promo" ]
-}</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "promo": [
-    {
-      "meta": {
-        "title": "Banners",
-        "resultClass": "banner" 
-      },
-      "results": [
+    ],
+    "links": [
         {
-          "id": "0000",
-          "title": "Special offer",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "promo/0000",
-              "path": "promo";
-              "parameters": {
-                  "promoId": "0000"
-              }
-          }
-        },
-        {
-          "id": "0000",
-          "title": "Special product",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "search?searchQuery=Turbo%20Phone%20X"
-              "path": "search";
-              "parameters": {
-                  "searchQuery": "Turbo Phone X"
-              }
-          }
-        },
-        {
-          "id": "0000",
-          "title": "Special category",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "products?categoryIds=123,5222,456"
-              "path": "products";
-              "parameters": {
-                  "categoryIds": [
-                      "123",
-                      "5222",
-                      "456"
-                  ]
-              }
-          }
+            "rel": "self",
+            "href": "/promo",
+            "path": "/promo"
         }
-      ]
+    ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__promo__promoId_"><span class="parent">/promo</span>/{promoId}</a> <span class="methods"><a href="#_promo__promoId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__promo__promoId_" class="panel-collapse collapse"><div class="panel-body"><div class="resource-description"><p>Custom landing page for example accessible via banner.</p></div><div class="list-group"><div onclick="window.location.href = '#_promo__promoId__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_promo__promoId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/promo</span>/{promoId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_promo__promoId__get_request" data-toggle="tab">Request</a></li><li><a href="#_promo__promoId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_promo__promoId__get_request"><h3>URI Parameters</h3><ul><li><strong>promoId</strong>: <em>required (string )</em></li></ul><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul></div><div class="tab-pane" id="_promo__promoId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    "type": "object",
+    "properties": {
+        "promo": {
+            "type": "array",
+            "items": {"$ref": "schema_collection.json"}
+        },
+        "links": {
+            "type" : "array",
+            "items": {"$ref": "schema_link.json"}
+        }
     },
-    {
-      "meta": {
-        "title": "TOP Offers",
-        "resultClass": "product" 
-      },
-      "results": [
+    "required": [ "promo" ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "promo": [
         {
-          "id": "0004",
-          "title": "Product 4",
-          "...": "..."
+            "meta": {
+                "title": "Banners",
+                "resultClass": "banner" 
+            },
+            "results": [
+                {
+                    "id": "0000",
+                    "title": "Special offer",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/promo/0000",
+                        "path": "/promo/0000"
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special product",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/search?searchQuery=Turbo%20Phone%20X",
+                        "path": "/search",
+                        "parameters": {
+                            "searchQuery": "Turbo Phone X"
+                        }
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special category",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "/products?categoryIds=123,5222,456",
+                        "path": "/products",
+                        "parameters": {
+                            "categoryIds": [
+                                "123",
+                                "5222",
+                                "456"
+                            ]
+                        }
+                    }
+                }
+            ]
         },
         {
-          "id": "0005",
-          "title": "Product 5",
-          "...": "..."
+            "meta": {
+                "title": "TOP Offers",
+                "resultClass": "product" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Product 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Product 5",
+                    "...": "..."
+                }
+            ],
+            "links": [
+                {
+                    "rel": "more",
+                    "href": "/products?categoryIds=117,932",
+                    "path": "/products",
+                    "parameters": {
+                        "categoryIds": [
+                            "117",
+                            "932"
+                        ]
+                    }
+                }
+            ]
         }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "/promo",
-      "path": "promo"
-    },
-    {
-      "rel": "next",
-      "href": "/promo?page=2",
-      "path": "promo",
-      "parameters": {
-        "page": "2"
-      }
-    }
-  ]
-}</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_categories" class="panel-title">/categories</h3></div><div class="panel-body"><div class="top-resource-description"><p>The collection of categories.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__categories"><span class="parent"></span>/categories</a> <span class="methods"><a href="#_categories_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__categories" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_categories_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all categories.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_categories_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/categories</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all categories.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_categories_get_request" data-toggle="tab">Request</a></li><li><a href="#_categories_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_categories_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all categories items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of categories id separated by commas.</p></li><li><strong>parentCategoryId</strong>: <em>(string )</em><p>If you do not provide <code>parentCategoryId</code> you will get root categories.</p></li></ul></div><div class="tab-pane" id="_categories_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    ],
+    "links": [
+        {
+            "rel": "self",
+            "href": "/promo",
+            "path": "/promo"
+        }
+    ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_categories" class="panel-title">/categories</h3></div><div class="panel-body"><div class="top-resource-description"><p>The collection of categories.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__categories"><span class="parent"></span>/categories</a> <span class="methods"><a href="#_categories_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__categories" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_categories_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Get all categories.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_categories_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/categories</h4></div><div class="modal-body"><div class="alert alert-info"><p>Get all categories.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_categories_get_request" data-toggle="tab">Request</a></li><li><a href="#_categories_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_categories_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>limit</strong>: <em>(integer )</em><p>Limits how much items will be returned. If limit is not provided all categories items will be returned. Items count returned by request not guaranteed to be equal limit. Returned items count can be in range `[0, limit]&#39;, which means that minimaly you can get 0 items and maximaly you can get items count equal to limit.</p><p>Limit equal to 0, means unlimited.</p></li><li><strong>offset</strong>: <em>(integer )</em><p>You will get collection items from <code>(offset, MIN(offset+limit, n)]</code>. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If <code>offset &gt;= n</code>, items count in response will be 0, but HTTP status code will be <code>200</code>.</p></li><li><strong>ids</strong>: <em>(string )</em><p>Array of categories id separated by commas.</p></li><li><strong>parentCategoryId</strong>: <em>(string )</em><p>If you do not provide <code>parentCategoryId</code> you will get root categories.</p></li></ul></div><div class="tab-pane" id="_categories_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
 	"type": "object",
 	"properties": {
     "meta": {
@@ -1578,77 +1478,80 @@
     }
   ]
 }</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_search" class="panel-title">/search</h3></div><div class="panel-body"><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__search"><span class="parent"></span>/search</a> <span class="methods"><a href="#_search_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__search" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_search_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Searches any kind of stuff in resources.</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_search_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/search</h4></div><div class="modal-body"><div class="alert alert-info"><p>Searches any kind of stuff in resources.</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_search_get_request" data-toggle="tab">Request</a></li><li><a href="#_search_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_search_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>page</strong>: <em>(integer )</em><p>Defines specific page for results. If you don&#39;t provide <code>page</code> you will get first page of the response. Default is 1.</p></li><li><strong>searchQuery</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_search_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
-	"type": "object",
-	"properties": {
-    "search": {
-      "type": "array",
-      "items": {"$ref": "schema_collection.json"}
-    },
-    "links": {
-      "type" : "array",
-      "items": {"$ref": "schema_link.json"}
-    }
-	},
-  "required": [ "search" ]
-}</code></pre><p><strong>Example</strong>:</p><pre><code>{
-  "search": [
-    {
-      "meta": {
-        "title": "Search results for categories",
-        "resultClass": "category" 
-      },
-      "results": [
+    "type": "object",
+        "properties": {
+            "search": {
+                "type": "array",
+                "items": {"$ref": "schema_collection.json"}
+            },
+            "links": {
+                "type" : "array",
+                "items": {"$ref": "schema_link.json"}
+            }
+        },
+    "required": [ "search" ]
+}
+</code></pre><p><strong>Example</strong>:</p><pre><code>{
+    "search": [
         {
-          "id": "0004",
-          "title": "Category 4",
-          "...": "..."
+            "meta": {
+                "title": "Search results for categories",
+                "resultClass": "category" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Category 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Category 5",
+                    "...": "..."
+                }
+            ]
         },
         {
-          "id": "0005",
-          "title": "Category 5",
-          "...": "..."
+            "meta": {
+                "title": "Search results for products",
+                "resultClass": "product" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Product 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Product 5",
+                    "...": "..."
+                }
+            ]
         }
-      ]
-    },
-    {
-      "meta": {
-        "title": "Search results for products",
-        "resultClass": "product" 
-      },
-      "results": [
+    ],
+    "links": [
         {
-          "id": "0004",
-          "title": "Product 4",
-          "...": "..."
+            "rel": "self",
+            "href": "/search?searchQuery=product%20x&amp;page=1",
+            "path": "/search",
+            "parameters": {
+                "searchQuery": "product x",
+                "page": "1"
+            }
         },
         {
-          "id": "0005",
-          "title": "Product 5",
-          "...": "..."
+            "rel": "next",
+            "href": "/search?searchQuery=product%20x&amp;page=2",
+            "path": "/search",
+            "parameters": {
+                "searchQuery": "product x",
+                "page": "2"
+            }
         }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "/search?searchQuery=product%20x",
-      "path": "search",
-      "parameters": {
-        "searchQuery": "product x"
-      }
-    },
-    {
-      "rel": "next",
-      "href": "/search?searchQuery=product%20x&amp;page=2",
-      "path": "search",
-      "parameters": {
-        "searchQuery": "product x",
-        "page": "2"
-      }
-    }
-  ]
-}</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__search_suggestions"><span class="parent">/search</span>/suggestions</a> <span class="methods"><a href="#_search_suggestions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__search_suggestions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_search_suggestions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Autocomplete suggesions</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_search_suggestions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/search</span>/suggestions</h4></div><div class="modal-body"><div class="alert alert-info"><p>Autocomplete suggesions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_search_suggestions_get_request" data-toggle="tab">Request</a></li><li><a href="#_search_suggestions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_search_suggestions_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>searchQuery</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_search_suggestions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+    ]
+}
+</code></pre></div></div></div></div></div></div></div><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__search_suggestions"><span class="parent">/search</span>/suggestions</a> <span class="methods"><a href="#_search_suggestions_get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__search_suggestions" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#_search_suggestions_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Autocomplete suggesions</p></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_search_suggestions_get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/search</span>/suggestions</h4></div><div class="modal-body"><div class="alert alert-info"><p>Autocomplete suggesions</p></div><ul class="nav nav-tabs"><li class="active"><a href="#_search_suggestions_get_request" data-toggle="tab">Request</a></li><li><a href="#_search_suggestions_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_search_suggestions_get_request"><h3>Headers</h3><ul><li><strong>Accept-Language</strong>: <em>(string )</em><p>Acceptable language for response.</p><p><strong>Example</strong>:</p><pre>en-US</pre></li></ul><h3>Query Parameters</h3><ul><li><strong>searchQuery</strong>: <em>(string )</em></li></ul></div><div class="tab-pane" id="_search_suggestions_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
   "type": "object",
   "properties": {
     "suggestions": {
@@ -2085,4 +1988,4 @@
       ]
     }
   }
-}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#__api_rules">/_api/rules</a></li><li><a href="#_user">/user</a></li><li><a href="#_products">/products</a></li><li><a href="#_promo">/promo</a></li><li><a href="#_categories">/categories</a></li><li><a href="#_search">/search</a></li><li><a href="#_info">/info</a></li><li><a href="#_cart">/cart</a></li></ul></div></div></div></div></body></html>
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_user">/user</a></li><li><a href="#_products">/products</a></li><li><a href="#_promo">/promo</a></li><li><a href="#_categories">/categories</a></li><li><a href="#_search">/search</a></li><li><a href="#_info">/info</a></li><li><a href="#_cart">/cart</a></li></ul></div></div></div></div></body></html>
