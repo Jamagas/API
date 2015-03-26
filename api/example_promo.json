@@ -11,8 +11,8 @@
                     "title": "Special offer",
                     "imageUrl": "http://www.example.com/specialOffer.png",
                     "content": {
-                        "href": "promo/0000",
-                        "path": "promo/0000"
+                        "href": "/promo/0000",
+                        "path": "/promo/0000"
                     }
                 },
                 {
@@ -20,8 +20,8 @@
                     "title": "Special product",
                     "imageUrl": "http://www.example.com/specialOffer.png",
                     "content": {
-                        "href": "search?searchQuery=Turbo%20Phone%20X",
-                        "path": "search",
+                        "href": "/search?searchQuery=Turbo%20Phone%20X",
+                        "path": "/search",
                         "parameters": {
                             "searchQuery": "Turbo Phone X"
                         }
@@ -32,8 +32,8 @@
                     "title": "Special category",
                     "imageUrl": "http://www.example.com/specialOffer.png",
                     "content": {
-                        "href": "products?categoryIds=123,5222,456",
-                        "path": "products",
+                        "href": "/products?categoryIds=123,5222,456",
+                        "path": "/products",
                         "parameters": {
                             "categoryIds": [
                                 "123",

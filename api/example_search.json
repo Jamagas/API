@@ -41,7 +41,7 @@
         {
             "rel": "self",
             "href": "/search?searchQuery=product%20x&page=1",
-            "path": "search",
+            "path": "/search",
             "parameters": {
                 "searchQuery": "product x",
                 "page": "1"
@@ -50,7 +50,7 @@
         {
             "rel": "next",
             "href": "/search?searchQuery=product%20x&page=2",
-            "path": "search",
+            "path": "/search",
             "parameters": {
                 "searchQuery": "product x",
                 "page": "2"
