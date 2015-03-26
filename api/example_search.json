@@ -1,59 +1,60 @@
 {
-  "search": [
-    {
-      "meta": {
-        "title": "Search results for categories",
-        "resultClass": "category" 
-      },
-      "results": [
+    "search": [
         {
-          "id": "0004",
-          "title": "Category 4",
-          "...": "..."
+            "meta": {
+                "title": "Search results for categories",
+                "resultClass": "category" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Category 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Category 5",
+                    "...": "..."
+                }
+            ]
         },
         {
-          "id": "0005",
-          "title": "Category 5",
-          "...": "..."
+            "meta": {
+                "title": "Search results for products",
+                "resultClass": "product" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Product 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Product 5",
+                    "...": "..."
+                }
+            ]
         }
-      ]
-    },
-    {
-      "meta": {
-        "title": "Search results for products",
-        "resultClass": "product" 
-      },
-      "results": [
+    ],
+    "links": [
         {
-          "id": "0004",
-          "title": "Product 4",
-          "...": "..."
+            "rel": "self",
+            "href": "/search?searchQuery=product%20x&page=1",
+            "path": "search",
+            "parameters": {
+                "searchQuery": "product x",
+                "page": "1"
+            }
         },
         {
-          "id": "0005",
-          "title": "Product 5",
-          "...": "..."
+            "rel": "next",
+            "href": "/search?searchQuery=product%20x&page=2",
+            "path": "search",
+            "parameters": {
+                "searchQuery": "product x",
+                "page": "2"
+            }
         }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "/search?searchQuery=product%20x",
-      "path": "search",
-      "parameters": {
-        "searchQuery": "product x"
-      }
-    },
-    {
-      "rel": "next",
-      "href": "/search?searchQuery=product%20x&page=2",
-      "path": "search",
-      "parameters": {
-        "searchQuery": "product x",
-        "page": "2"
-      }
-    }
-  ]
+    ]
 }
