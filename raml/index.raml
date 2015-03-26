@@ -41,6 +41,11 @@ traits:
           description: |
             You will get collection items from `(offset, MIN(offset+limit, n)]`. The initial offet is 0. Range start is exclusive, but end is inclusive, which means that for example for ofset=2 (offet 2 items from start), you will get items 3,4,.., etc. If `offset >= n`, items count in response will be 0, but HTTP status code will be `200`.
   - paged:
+      description: |
+        Paged endpoint main use is when you can't use limit/offset idiom, because your data is not a collection of objects, but you want to separate response into chunks, because all set is too large to be returned at once. 
+        Other thing why paged endpoint is difference from collection is that every page is self contained, which means that if you have page=1 you can't neceraly make prediction on page=2 and vise versa.For example, in page=1 you return 4 categories and 10 products, in page=2 you can return same 4 categories and other 33 products and 2 banners.
+        You should look at pages as separate units, which are linked by endpoint logic. This allows you to separate enpoint data set into custom chunks where each can be custom constructed. For example, you have endpoint which contains 100 products, 20 categories and 10 banners, return all this set at once can be slow because it contains a lot of data so you separated it into pages and you wanted that in every page all banners will be visible because they are importart to you. So you created 3 pages as folows: page=1 10 banners, 5 categories, 50 products; page=2 10 banners, other 5 categories, other 30 products; page=3 10 banners, other 20 products.
+        Only indication that you have next page or previuos page is `next` and `previous` links in links array. So if you have endpoint which have only one page `next` link should be not present and if you have multiple pages only last page should not include `next` link only `previuos`.
       queryParameters:
         page:
           type: integer
@@ -371,7 +376,7 @@ traits:
                 example: !include example_product_description.json
 
 /promo:
-  is: [ localized, paged ]
+  is: [ localized ]
   description: |
     Default landing page.
   get:
