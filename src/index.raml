@@ -70,67 +70,6 @@ traits:
             Example 1. `depth = 0` means that <<resourcePathName>> in sub <<resourcePathName>> array wont return sub <<resourcePathName>>. 
             
             Example 2. `depth = 1` means that <<resourcePathName>> in sub <<resourcePathName>> array will return sub <<resourcePathName>> if they exist, but those sub categories, wont return sub sub <<resourcePathName>>.
-
-/_api/rules:
-  /messages :
-    is: [ localized ]
-    description: |
-      **Example of generic messages that could be return by all requests in any of response code.**
-      
-      If request fails with an error error messages should be present.
-      
-      If request have aditional information for user it can be added to info messages.
-      
-      If you want to for example congradulate user after registration you can provide success messages.
-    get:
-      responses:
-        200:
-          body:
-            application/json:
-              schema: !include schema_messages.json
-              example: !include example_messages.json
-    post:
-      responses:
-        200:
-          body:
-            application/json:
-              schema: !include schema_messages.json
-              example: !include example_messages.json
-  /date:
-    description: |
-      **Date/Time format ISO 8601, UTC**. This date and time format is required everywhere where you want to return date/time data in response json.
-  /authentication:
-    description: |
-      _Rules_
-      
-      For a client to be able to consume this API, it must provide authentication details within each request. Authentication details are provided using a HTTP Authorization header [RFC2616 Section 14.8](http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.8).
-      
-      Authorization header's field value consists of `MobilityBee` auth-scheme identifier, API provider issued API Key and SHA256 hash of request's relative URI with absolute path, API Key and API Secret. In full form, Authorization header field has a form as follows:
-      
-      `Authorization: MobilityBee apikey="APIKEY", hash="HASH"`
-      
-      where `HASH` is 'hex' encoded and calculated like this:
-      
-      `HASH = hex_encode(SHA256(URI + APIKEY + APISECRET))`
-      
-      where `URI` is a relative request URI with absolute path (e.g. `/categories`, `/products/12345`). Be advised that _query string_ is **NOT** included.
-        
-      If invalid or none Authentication details are provided within a request, server must respond with `401 Unauthorized` response. The response **must** also include a `WWW-Authenticate` header with a field value of 'MobilityBee', i.e. `WWW-Authenticate: MobilityBee`.
-        
-      _Examples_
-      
-      When API Key is _foofoo_, API Secret is _applesandoranges_ and to-be-consumed resource URI is _http://api.example.com/categories/12345_, Authorization field should look like this:
-      
-      `Authorization: MobilityBee apikey="foofoo", hash="5e82e3836f234a8f8bcacc711fabdac3216663bb6d38b0ea7e2e76482f196149"`
-      
-      Using MAC OS X shell, corresponding hash can be calculated with a following command:
-      
-      `echo -n '/categories/12345foofooapplesandoranges' | shasum -a 256`
-      
-      In Node.JS, calculation is done as follows:
-      
-      `var hash = require('crypto').createHash('sha256').update('/categories/12345foofooapplesandoranges').digest('hex');`
-
 /user:
   is: [ localized, secured_by_user_session ]
   get:
