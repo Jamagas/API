@@ -1,85 +1,87 @@
 {
-  "promo": [
-    {
-      "meta": {
-        "title": "Banners",
-        "resultClass": "banner" 
-      },
-      "results": [
+    "promo": [
         {
-          "id": "0000",
-          "title": "Special offer",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "promo/0000",
-              "path": "promo";
-              "parameters": {
-                  "promoId": "0000"
-              }
-          }
+            "meta": {
+                "title": "Banners",
+                "resultClass": "banner" 
+            },
+            "results": [
+                {
+                    "id": "0000",
+                    "title": "Special offer",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "promo/0000",
+                        "path": "promo/0000"
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special product",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "search?searchQuery=Turbo%20Phone%20X",
+                        "path": "search",
+                        "parameters": {
+                            "searchQuery": "Turbo Phone X"
+                        }
+                    }
+                },
+                {
+                    "id": "0000",
+                    "title": "Special category",
+                    "imageUrl": "http://www.example.com/specialOffer.png",
+                    "content": {
+                        "href": "products?categoryIds=123,5222,456",
+                        "path": "products",
+                        "parameters": {
+                            "categoryIds": [
+                                "123",
+                                "5222",
+                                "456"
+                            ]
+                        }
+                    }
+                }
+            ]
         },
         {
-          "id": "0000",
-          "title": "Special product",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "search?searchQuery=Turbo%20Phone%20X"
-              "path": "search";
-              "parameters": {
-                  "searchQuery": "Turbo Phone X"
-              }
-          }
-        },
-        {
-          "id": "0000",
-          "title": "Special category",
-          "imageUrl": "http://www.example.com/specialOffer.png",
-          "content": {
-              "href": "products?categoryIds=123,5222,456"
-              "path": "products";
-              "parameters": {
-                  "categoryIds": [
-                      "123",
-                      "5222",
-                      "456"
-                  ]
-              }
-          }
+            "meta": {
+                "title": "TOP Offers",
+                "resultClass": "product" 
+            },
+            "results": [
+                {
+                    "id": "0004",
+                    "title": "Product 4",
+                    "...": "..."
+                },
+                {
+                    "id": "0005",
+                    "title": "Product 5",
+                    "...": "..."
+                }
+            ],
+            "links": [
+                {
+                    "rel": "more",
+                    "href": "/products?categoryIds=117,932",
+                    "path": "/products",
+                    "parameters": {
+                        "categoryIds": [
+                            "117",
+                            "932"
+                        ]
+                    }
+                }
+            ]
         }
-      ]
-    },
-    {
-      "meta": {
-        "title": "TOP Offers",
-        "resultClass": "product" 
-      },
-      "results": [
+    ],
+    "links": [
         {
-          "id": "0004",
-          "title": "Product 4",
-          "...": "..."
-        },
-        {
-          "id": "0005",
-          "title": "Product 5",
-          "...": "..."
+            "rel": "self",
+            "href": "/promo",
+            "path": "/promo"
         }
-      ]
-    }
-  ],
-  "links": [
-    {
-      "rel": "self",
-      "href": "/promo",
-      "path": "promo"
-    },
-    {
-      "rel": "next",
-      "href": "/promo?page=2",
-      "path": "promo",
-      "parameters": {
-        "page": "2"
-      }
-    }
-  ]
+    ]
 }
