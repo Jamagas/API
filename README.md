@@ -26,7 +26,7 @@ Dependencies:
 
 Build:
 
-	raml2html -i raml/index.raml -o build/index.html
+	raml2html -i src/index.raml -o build/index.html
 
 ## Copyright and license
 
